@@ -36,7 +36,7 @@ public class Demo14 extends Game {
     protected void onInit() {
         setSize(500, 800);
         setAutoGC(false);
-        preference = new Preference("fuckGod.xml");
+        preference = new Preference("fuckGod.properties");
         best = (int) preference.query(key, 0);
         setBack(new ColorResource(0x2b2b2b));
         setTitle("Flappy bird demo by ice1000");
