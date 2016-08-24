@@ -13,7 +13,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 /**
  * Created by ice1000 on 2016/8/23.
  *
- * @author ice1000
+ * @author ice1000, KirCute
  */
 public class Demo15 extends Game {
     public static void main(String[] args) {
@@ -29,10 +29,11 @@ public class Demo15 extends Game {
     @Override
     protected void onInit() {
         super.onInit();
-        setSize(600, 400);
-        timer = new FTimer(30);
-        setTitle("Snake game demo");
-        addKeyListener(new KeyListener() {
+        this.setLocationRelativeTo(null);
+        this.setSize(600, 400);
+        timer = new FTimer(100);
+        this.setTitle("Snake game demo");
+        this.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
             }
@@ -48,17 +49,19 @@ public class Demo15 extends Game {
         });
         body = new LinkedBlockingQueue<>();
         food = generateFood(10, 10);
-        addObject(food);
+        this.addObject(food);
         ShapeObject object = generateBody(30, 20);
         body.add(object);
-        addObject(object);
+        this.addObject(object);
+        this.setAutoGC(false);
+        this.setResizable(false);
     }
 
     @Override
     protected void onRefresh() {
         super.onRefresh();
         if (timer.ended()) {
-            ShapeObject object;
+            ShapeObject object = null;
             switch (direction) {
                 case KeyEvent.VK_LEFT:
                     object = generateBody(--x, y);
@@ -69,26 +72,29 @@ public class Demo15 extends Game {
                 case KeyEvent.VK_UP:
                     object = generateBody(x, --y);
                     break;
-//                case KeyEvent.VK_DOWN:
-                default:
+                case KeyEvent.VK_DOWN:
                     object = generateBody(x, ++y);
                     break;
+                default:
+                    //TODO
             }
-            x += 60;
-            x %= 60;
-            y += 40;
-            y %= 40;
+            // x += 60;
+            // x %= 60;
+            // y += 40;
+            // y %= 40;
+            x = this.moved(x, true);
+            y = this.moved(y, false);
             if (x == fx && y == fy) {
-                removeObject(food);
+                this.removeObject(food);
                 isIncreasing = true;
-                fx = getRandom().nextInt(59);
-                fy = getRandom().nextInt(39);
+                fx = getRandom().nextInt(this.getWidth() / 10 - 1);
+                fy = getRandom().nextInt(this.getHeight() / 10 - 1);
                 food = generateFood(fx, fy);
-                addObject(food);
+                this.addObject(food);
             }
             body.add(object);
-            addObject(object);
-            if (!isIncreasing) removeObject(body.poll());
+            this.addObject(object);
+            if (!isIncreasing) this.removeObject(body.poll());
             isIncreasing = false;
         }
     }
@@ -99,5 +105,9 @@ public class Demo15 extends Game {
 
     private ShapeObject generateFood(int x, int y) {
         return new ShapeObject(ColorResource.get如果奇迹有颜色那么一定是橙色(), new FCircle(5), x * 10, y * 10);
+    }
+
+    private int moved(int i, boolean isX) {
+        return ((isX) ? ((i + this.getWidth() / 10 - 2) % (this.getWidth() / 10 - 2)) : ((i + (this.getHeight() / 10 - 4)) % (this.getHeight() / 10 - 4)));
     }
 }
