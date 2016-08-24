@@ -47,7 +47,7 @@ class  untitledDemo:Game(){
             球.targets.add(Pair(item,object:OnCollideEvent{
                 override fun handle() {
                     球.anims.clear()
-                    val t = Check(球,item)
+                    Check(球,item)
                     球.anims.add(SimpleMove(xa,ya))
                 }
             }))
@@ -71,7 +71,9 @@ class  untitledDemo:Game(){
 
     public override  fun onClick(e: OnClickEvent?) {
         发球 = true
-        球.anims.add(SimpleMove(-200,-200))
+        xa = ((random.nextGaussian()-0.5)*200).toInt()
+        ya = ((random.nextGaussian()-0.5)*200).toInt()
+        球.anims.add(SimpleMove(xa,ya))
     }
     public fun Check(active_obj:ShapeObject,static_obj:ShapeObject){
         val x1 = static_obj.x
@@ -82,10 +84,10 @@ class  untitledDemo:Game(){
         val y = active_obj.y
         //FLog.d("$x   $y   $x1   $y1   $x2   $y2")
         when{
-            (x>x1-5)&&(x<x2+5)&&(y <= y1+5) -> ya = -1*ya
-            (x>x1-5)&&(x<x2+5)&&(y > y2-5) -> ya = -1*ya
-            (x <= x1+5)&&(y>y1-5)&&(y<=y2+5) -> xa = -1*xa
-            (x > x2-5)&&(y>y1-5)&&(y<y2+5) -> xa = -1*xa
+            (x>x1-5)&&(x<x2+5)&&(y <= y1+5) -> ya = (-1.05*ya).toInt()
+            (x>x1-5)&&(x<x2+5)&&(y > y2-5) -> ya = (-1.05*ya).toInt()
+            (x <= x1+5)&&(y>y1-5)&&(y<=y2+5) -> xa = (-1.05*xa).toInt()
+            (x > x2-5)&&(y>y1-5)&&(y<y2+5) -> xa = (-1.05*xa).toInt()
         }
     }
 }
