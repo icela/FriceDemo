@@ -37,7 +37,7 @@ class  untitledDemo:Game(){
 
     public override  fun onInit() {
         setBounds(100,100,800,600)
-        title = "打砖块"
+        title = "蛤蛤打砖块"
         r =5.0
         拍 = ShapeObject(ColorResource.BLACK,FRectangle(100,15),100.0,500.0)
         球 = ShapeObject(ColorResource.南小鸟,FCircle(r),120.0,489.0)
