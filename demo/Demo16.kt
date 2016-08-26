@@ -28,13 +28,11 @@ class  untitledDemo:Game(){
     private lateinit var 拍:ShapeObject
     private lateinit var 球:ShapeObject
     private lateinit var 底部:ShapeObject
-    private lateinit var 右墙:ShapeObject
-    private lateinit var 上墙:ShapeObject
     private  var 发球 = false
     private var xa = -200
     private var ya = -200
     private var r = 5.0
-    private val url = "http://mat1.gtimg.com/news/news2013/LOGO.jpg"
+    private val url ="
     private var sum = 0
 
     public override  fun onInit() {
