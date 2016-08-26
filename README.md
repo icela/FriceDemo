@@ -13,4 +13,4 @@ demos for frice engine
 - [demo/Demo9.java](demo/Demo9.java)
 - [demo/Demo10.groovy](demo/Demo10.groovy)
 - [demo/Demo11.java](demo/Demo11.java) (an awesome demo by [@SuperSodaSea](https://github.com/SuperSodaSea))
-- [demo/Demo16.kt](demo/Demo16.kt) (demo with bugs:孤独的打砖块)
+- [demo/Demo16.kt](demo/Demo16.kt) (Elder breaks bricks)
