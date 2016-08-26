@@ -32,7 +32,7 @@ class  untitledDemo:Game(){
     private var xa = -200
     private var ya = -200
     private var r = 5.0
-    private val url ="
+    private val url =""
     private var sum = 0
 
     public override  fun onInit() {
@@ -148,7 +148,7 @@ class  untitledDemo:Game(){
                                 FLog.v(sum)
                             }
                         }))
-                       球.anims.clear()
+                        球.anims.clear()
                         Check(球,t)
                         球.anims.add(SimpleMove(xa,ya))
                     }
