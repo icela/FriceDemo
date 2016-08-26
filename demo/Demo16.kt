@@ -26,7 +26,7 @@ fun main(args: Array<String>) {
 
 class  untitledDemo:Game(){
     private lateinit var 拍:ShapeObject
-    private lateinit var 球:ShapeObject
+    private lateinit var 球:ImageObject
     private lateinit var 底部:ShapeObject
     private  var 发球 = false
     private var xa = -200
@@ -38,9 +38,10 @@ class  untitledDemo:Game(){
     public override  fun onInit() {
         setBounds(100,100,800,600)
         title = "蛤蛤打砖块"
-        r =5.0
+        r =32.0
         拍 = ShapeObject(ColorResource.BLACK,FRectangle(100,15),100.0,500.0)
-        球 = ShapeObject(ColorResource.南小鸟,FCircle(r),120.0,489.0)
+        //球 = ShapeObject(ColorResource.南小鸟,FCircle(r),120.0,489.0)
+        球 = ImageObject(WebImageResource("http://download.easyicon.net/png/540680/32/"),120.0,470.0)
         底部 = ShapeObject(ColorResource.BLACK,FRectangle(1000,100),-100.0,590.0)
         addObject(拍)
         addObject(球)
@@ -62,17 +63,19 @@ class  untitledDemo:Game(){
             FDialog(this).show("Game over")
             System.exit(0)
         }
-        if(球.y+r>495&&球.y+r<510&&球.x+r>拍.x&&球.x+r<拍.x+拍.width){
+        if(球.y+r>480&&球.y+r<500&&球.x+r>拍.x&&球.x+r<拍.x+拍.width){
             球.anims.clear()
-            球.y=490.0
+            球.y=460.0
             ya = (-1.05*ya).toInt()
             球.anims.add(SimpleMove(xa,ya))
+            FLog.v("q")
         }
         if(球.y+r<0.0){
             球.anims.clear()
             球.y=-5.0
             ya = (-1.05*ya).toInt()
             球.anims.add(SimpleMove(xa,ya))
+            FLog.v("w")
 
         }
         if(球.x+r<0.0){
@@ -80,12 +83,14 @@ class  untitledDemo:Game(){
             xa = (-1.05*xa).toInt()
             球.x = -5.0
             球.anims.add(SimpleMove(xa,ya))
+            FLog.v("e")
         }
         if(球.x+r>800.0){
             球.anims.clear()
             xa = (-1.05*xa).toInt()
             球.x=795.0
             球.anims.add(SimpleMove(xa,ya))
+            FLog.v("r")
         }
         拍.scale(Pair(((10+sum)).toDouble()/10,1.0))
     }
@@ -94,13 +99,13 @@ class  untitledDemo:Game(){
         if(发球) return
         发球 = true
         xa = ((random.nextGaussian()-0.5)*50+200).toInt()
-        ya = ((random.nextGaussian()-0.5)*50+200).toInt()
+        ya = 0-((random.nextGaussian()-0.5)*50+200).toInt()
         球.anims.add(SimpleMove(xa,ya))
     }
 
 
 
-    public fun Check(active_obj:ShapeObject,static_obj:ShapeObject){
+    public fun Check(active_obj:ImageObject,static_obj:ImageObject){
         val x1 = static_obj.x
         val x2 = static_obj.x+static_obj.width
         val y1 = static_obj.y
@@ -117,33 +122,30 @@ class  untitledDemo:Game(){
 
     fun AddBlocks(){
         val x = random
-        val y = WebImageResource("http://www.haotu.net/icon/172209/frog/128/png")
+        val y = WebImageResource("http://download.easyicon.net/png/1147697/24/")
         val colors = arrayOf(ColorResource.BLUE,ColorResource.CYAN,ColorResource.GREEN,ColorResource.WHITE,ColorResource.PINK,
                 ColorResource.MAGENTA,ColorResource.RED,ColorResource.YELLOW,ColorResource.SHIT_YELLOW)
         for(i in 0..9){
             for(j in 1..8){
-                val t = ShapeObject(colors[x.nextInt(colors.size)],FRectangle(75,15),(80*i).toDouble(),(20+j*20).toDouble())
+                //val t = ShapeObject(colors[x.nextInt(colors.size)],FRectangle(75,15),(80*i).toDouble(),(20+j*20).toDouble())
+                val t = ImageObject(y,(80*i).toDouble(),(20+j*25).toDouble())
                 addObject(t)
                 球.targets.add(Pair(t,object:OnCollideEvent{
                     override fun handle() {
-                        removeObject(t)
-                        t.died = true
-                        val y =    ImageObject(y,t.x,t.y)
-                        addObject(y)
-                        y.anims.add(AccelerateMove.getGravity())
-
-                        y.targets.add(Pair(底部,object :OnCollideEvent{
+                        if(!t.anims.isEmpty()) return
+                        t.anims.add(AccelerateMove.getGravity())
+                        t.targets.add(Pair(底部,object :OnCollideEvent{
                             override fun handle() {
-                                y.died = true
-                                removeObject(y)
+                                t.died = true
+                                removeObject(t)
                                 sum--
                                 FLog.v(sum)
                             }
                         }))
-                        y.targets.add(Pair(拍,object :OnCollideEvent{
+                        t.targets.add(Pair(拍,object :OnCollideEvent{
                             override fun handle() {
-                                removeObject(y)
-                                y.died = true
+                                removeObject(t)
+                                t.died = true
                                 sum++
                                 FLog.v(sum)
                             }
