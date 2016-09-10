@@ -1,13 +1,7 @@
 import org.frice.game.anim.move.AccelerateMove;
 import org.frice.game.obj.sub.ShapeObject;
 import org.frice.game.resource.graphics.ColorResource;
-import org.frice.game.resource.image.ImageResource;
 import org.frice.game.utils.graphics.shape.FCircle;
-import org.frice.game.utils.graphics.utils.ColorUtils;
-
-import java.awt.image.BufferedImage;
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
 
 /**
  * Created by ice1000 on 2016/8/29.
