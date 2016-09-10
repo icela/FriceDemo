@@ -1,5 +1,5 @@
 import org.frice.game.Game
-import org.frice.game.obj.effects.{FFunction, FunctionEffect}
+import org.frice.game.obj.effects.FunctionEffect
 import org.frice.game.utils.time.FTimer
 
 /**

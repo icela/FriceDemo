@@ -1,7 +1,9 @@
+
 import org.frice.game.utils.data.FileUtils
-import org.frice.game.utils.kotlin.forceRun
 import org.frice.game.utils.message.log.FLog
-import org.frice.game.utils.web.*
+import org.frice.game.utils.misc.forceRun
+import org.frice.game.utils.web.HTMLUtils
+import org.frice.game.utils.web.WebUtils
 import java.util.*
 
 /**

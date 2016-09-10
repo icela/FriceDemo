@@ -2,7 +2,7 @@ import kotlin.Pair;
 import org.frice.game.Game;
 import org.frice.game.anim.move.AccelerateMove;
 import org.frice.game.anim.move.SimpleMove;
-import org.frice.game.obj.collide.OnCollideEvent;
+import org.frice.game.obj.FObject;
 import org.frice.game.obj.sub.ShapeObject;
 import org.frice.game.resource.graphics.ColorResource;
 import org.frice.game.utils.graphics.shape.FCircle;
@@ -23,7 +23,7 @@ public class Demo7 extends Game {
 	private Random random = new Random();
 	private FTimer timer = new FTimer(3000);
 	private ShapeObject object;
-	private OnCollideEvent gameOver;
+	private FObject.OnCollideEvent gameOver;
 
 	@Override
 	protected void onInit() {

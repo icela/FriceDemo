@@ -37,7 +37,7 @@ public class Demo12 extends Game {
             addObject(new ShapeObject(colors[(int) ((System.currentTimeMillis() / 100) % colors.length)],
                     new FCircle(10), getMousePosition().getX(), getMousePosition().getY()) {{
                 getAnims().add(AccelerateMove.getGravity(20));
-                getAnims().add(new SimpleMove((int) (getRandom().nextInt(Demo.this.getWidth()) - getX()), -10));
+                getAnims().add(new SimpleMove((int) (getRandom().nextInt(Demo12.this.getWidth()) - getX()), -10));
             }});
         }
     }

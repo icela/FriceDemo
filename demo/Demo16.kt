@@ -1,8 +1,9 @@
+
 import org.frice.game.Game
 import org.frice.game.anim.move.AccelerateMove
 import org.frice.game.anim.move.SimpleMove
 import org.frice.game.event.OnClickEvent
-import org.frice.game.obj.collide.OnCollideEvent
+import org.frice.game.obj.FObject
 import org.frice.game.obj.sub.ImageObject
 import org.frice.game.obj.sub.ShapeObject
 import org.frice.game.resource.graphics.ColorResource
@@ -32,7 +33,6 @@ class Demo16 : Game() {
 		title = "蛤蛤打砖块"
 		r = 32.0
 		拍 = ShapeObject(ColorResource.BLACK, FRectangle(100, 15), 100.0, 500.0)
-		//球 = ShapeObject(ColorResource.南小鸟,FCircle(r),120.0,489.0)
 		球 = ImageObject(WebImageResource("http://download.easyicon.net/png/540680/32/"), 120.0, 470.0)
 		底部 = ShapeObject(ColorResource.BLACK, FRectangle(1000, 100), -100.0, 590.0)
 		addObject(拍)
@@ -47,9 +47,7 @@ class Demo16 : Game() {
 		val theX = point.x - this.x.toDouble() - 拍.width / 2
 		if (0 < theX && theX < 800 - 拍.width) {
 			拍.x = theX
-			if (!发球) {
-				球.x = 拍.x + 拍.width / 2 - 球.width / 2
-			}
+			if (!发球) 球.x = 拍.x + 拍.width / 2 - 球.width / 2
 		}
 		if (球.y + r > 600) {
 			FDialog(this).show("Game over")
@@ -87,7 +85,7 @@ class Demo16 : Game() {
 		拍.scale(Pair(((10 + sum)).toDouble() / 10, 1.0))
 	}
 
-	public override fun onClick(e: OnClickEvent?) {
+	override fun onClick(e: OnClickEvent) {
 		if (发球) return
 		发球 = true
 		xa = ((random.nextGaussian() - 0.5) * 50 + 200).toInt()
@@ -96,7 +94,7 @@ class Demo16 : Game() {
 	}
 
 
-	public fun Check(active_obj: ImageObject, static_obj: ImageObject) {
+	private fun Check(active_obj: ImageObject, static_obj: ImageObject) {
 		val x1 = static_obj.x
 		val x2 = static_obj.x + static_obj.width
 		val y1 = static_obj.y
@@ -116,16 +114,15 @@ class Demo16 : Game() {
 		val y = WebImageResource("http://download.easyicon.net/png/1147697/24/")
 		val colors = arrayOf(ColorResource.BLUE, ColorResource.CYAN, ColorResource.GREEN, ColorResource.WHITE, ColorResource.PINK,
 				ColorResource.MAGENTA, ColorResource.RED, ColorResource.YELLOW, ColorResource.SHIT_YELLOW)
-		for (i in 0..9) {
-			for (j in 1..8) {
-				//val t = ShapeObject(colors[x.nextInt(colors.size)],FRectangle(75,15),(80*i).toDouble(),(20+j*20).toDouble())
+		(0..9).forEach { i ->
+			(1..8).forEach { j ->
 				val t = ImageObject(y, (80 * i).toDouble(), (20 + j * 25).toDouble())
 				addObject(t)
-				球.targets.add(Pair(t, object : OnCollideEvent {
+				球.targets.add(Pair(t, object : FObject.OnCollideEvent {
 					override fun handle() {
 						if (!t.anims.isEmpty()) return
 						t.anims.add(AccelerateMove.getGravity())
-						t.targets.add(Pair(底部, object : OnCollideEvent {
+						t.targets.add(Pair(底部, object : FObject.OnCollideEvent {
 							override fun handle() {
 								t.died = true
 								removeObject(t)
@@ -133,7 +130,7 @@ class Demo16 : Game() {
 								FLog.v(sum)
 							}
 						}))
-						t.targets.add(Pair(拍, object : OnCollideEvent {
+						t.targets.add(Pair(拍, object : FObject.OnCollideEvent {
 							override fun handle() {
 								removeObject(t)
 								t.died = true

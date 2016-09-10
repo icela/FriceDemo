@@ -42,7 +42,7 @@ public class Demo13 extends Game {
         if (timer2.ended()) {
             addObject(new ShapeObject(colors[(int) ((System.currentTimeMillis() / 100) % colors.length)],
                     new FCircle(10), getMousePosition().getX(), getMousePosition().getY()) {{
-                getAnims().add(new SimpleMove((int) (getRandom().nextInt(Demo.this.getWidth()) - getX()), -500));
+                getAnims().add(new SimpleMove((int) (getRandom().nextInt(Demo13.this.getWidth()) - getX()), -500));
                 getAnims().add(AccelerateMove.getGravity(20));
                 getTargets().add(new Pair<>(object, () -> {
                     getAnims().remove(1);
