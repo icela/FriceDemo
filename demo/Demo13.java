@@ -24,13 +24,13 @@ public class Demo13 extends Game {
     public void onInit() {
         timer2 = new FTimer(30);
         colors = new ColorResource[]{
-                ColorResource.get东条希(),
-                ColorResource.get高坂穗乃果(),
-                ColorResource.get西木野真姬(),
-                ColorResource.get矢泽妮可(),
-                ColorResource.get洵濑绘理(),
-                ColorResource.get星空凛(),
-                ColorResource.get南小鸟()
+                ColorResource.东条希,
+                ColorResource.高坂穗乃果,
+                ColorResource.西木野真姬,
+                ColorResource.矢泽妮可,
+                ColorResource.洵濑绘理,
+                ColorResource.星空凛,
+                ColorResource.南小鸟
         };
         object = new ShapeObject(new ColorResource(0xffffff), new FRectangle(getWidth(), 10), 1, getHeight() - 50);
         addObject(object);

@@ -31,7 +31,7 @@ public class Demo9 extends Game {
 		ImageObject plane = new ImageObject(new FileImageResource("1.png"));
 		setBounds(100, 100, 500, 500);
 		addObject(new ParticleEffect(new ParticleResource(this, 500, 500,
-				ColorResource.getWHITE(), ColorResource.getGREEN()), 0, 0));
+				ColorResource.WHITE, ColorResource.GREEN), 0, 0));
 		addObject(boss);
 		addObject(plane);
 		listenKeyPressed(e -> {

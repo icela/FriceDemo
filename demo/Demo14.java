@@ -40,7 +40,7 @@ public class Demo14 extends Game {
         best = (int) preference.query(key, 0);
         setBack(new ColorResource(0x2b2b2b));
         setTitle("Flappy bird demo by ice1000");
-        object = new ShapeObject(ColorResource.get宝强绿(), new FCircle(20.0), 50.0, 200.0);
+        object = new ShapeObject(ColorResource.宝强绿, new FCircle(20.0), 50.0, 200.0);
         object.getAnims().add(AccelerateMove.getGravity());
         text = new SimpleText("Press any key to jump", 20, 20);
         addObject(text);
@@ -76,11 +76,11 @@ public class Demo14 extends Game {
 
     private ShapeObject[] getObj() {
         int height = random.nextInt(400);
-        return new ShapeObject[]{new ShapeObject(ColorResource.get吾王蓝(),
+        return new ShapeObject[]{new ShapeObject(ColorResource.吾王蓝,
                 new FRectangle(50, height), 550.0, 0.0) {{
             getAnims().add(new SimpleMove(-150, 0));
             getTargets().add(new Pair<>(object, gameOver));
-        }}, new ShapeObject(ColorResource.get吾王蓝(),
+        }}, new ShapeObject(ColorResource.吾王蓝,
                 new FRectangle(50, getHeight() - height - 400), 550.0, height + 400.0) {{
             getAnims().add(new SimpleMove(-150, 0));
             getTargets().add(new Pair<>(object, gameOver));

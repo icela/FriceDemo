@@ -31,10 +31,10 @@ public class Demo1 extends Game {
 	@Override
 	public void onInit() {
 		timer = new FTimer(800);
-		setBack(ColorResource.Companion.getPINK());
+		setBack(ColorResource.PINK);
 		setBounds(100, 100, 800, 800);
 		setTitle("Fuck Fuck Fuck");
-		addObject(new ShapeObject(ColorResource.Companion.getDARK_GRAY(), new FOval(50, 50)) {{
+		addObject(new ShapeObject(ColorResource.DARK_GRAY, new FOval(50, 50)) {{
 			getAnims().add(new SimpleMove(10, 20));
 		}});
 		addTimeListener(new FTimeListener(200, () -> {

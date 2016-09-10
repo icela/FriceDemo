@@ -22,7 +22,7 @@ public class Demo6 extends Game {
 	@Override
 	protected void onInit() {
 		setSize(900, 900);
-		addTimeListener(new FTimeListener(2000, () -> addObject(new ShapeObject(ColorResource.Companion.get基佬紫(),
+		addTimeListener(new FTimeListener(2000, () -> addObject(new ShapeObject(ColorResource.基佬紫,
 				new FOval(80.0, 120.0), 10, 750) {{
 			getAnims().add(new SimpleScale(1.1, 1.1));
 			getAnims().add(AccelerateMove.getGravity());

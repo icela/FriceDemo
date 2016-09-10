@@ -100,11 +100,11 @@ public class Demo15 extends Game {
     }
 
     private ShapeObject generateBody(int x, int y) {
-        return new ShapeObject(ColorResource.get吾王蓝(), new FRectangle(10, 10), x * 10, y * 10);
+        return new ShapeObject(ColorResource.吾王蓝, new FRectangle(10, 10), x * 10, y * 10);
     }
 
     private ShapeObject generateFood(int x, int y) {
-        return new ShapeObject(ColorResource.get如果奇迹有颜色那么一定是橙色(), new FCircle(5), x * 10, y * 10);
+        return new ShapeObject(ColorResource.如果奇迹有颜色那么一定是橙色, new FCircle(5), x * 10, y * 10);
     }
 
     private int moved(int i, boolean isX) {

@@ -23,7 +23,7 @@ class Demo17 extends Game {
 	override def onRefresh(): Unit = {
 		super.onRefresh()
 		if (timer.ended()) {
-			obj = new ShapeObject(ColorResource.get西木野真姬(), new FCircle(10), 10, 10)
+			obj = new ShapeObject(ColorResource.西木野真姬, new FCircle(10), 10, 10)
 			obj setMass 5.0
 			obj.addForce(0, 50)
 			obj.getAnims add new SimpleMove(400, 0)

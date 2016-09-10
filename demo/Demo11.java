@@ -22,19 +22,19 @@ public class Demo11 extends Game {
 	public void onInit() {
 		new Color(0xffffff);
 		colors = new ColorResource[]{
-				ColorResource.Companion.get东条希(),
-				ColorResource.Companion.get南小鸟(),
-				ColorResource.Companion.get园田海未(),
-				ColorResource.Companion.get小泉花阳(),
-				ColorResource.Companion.get星空凛(),
-				ColorResource.Companion.get洵濑绘理(),
-				ColorResource.Companion.get矢泽妮可(),
-				ColorResource.Companion.get西木野真姬(),
-				ColorResource.Companion.get高坂穗乃果(),
+				ColorResource.东条希,
+				ColorResource.南小鸟,
+				ColorResource.园田海未,
+				ColorResource.小泉花阳,
+				ColorResource.星空凛,
+				ColorResource.洵濑绘理,
+				ColorResource.矢泽妮可,
+				ColorResource.西木野真姬,
+				ColorResource.高坂穗乃果
 		};
 		setSize(1200, 720);
 		setTitle("IAmSoSquare Demo");
-		setBack(ColorResource.Companion.getBLACK());
+		setBack(ColorResource.BLACK);
 		addTimeListener(new FTimeListener(1, () -> {
 			a += 0.0002;
 			b += a;
