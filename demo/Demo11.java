@@ -5,8 +5,6 @@ import org.frice.game.resource.graphics.ColorResource;
 import org.frice.game.utils.graphics.shape.FCircle;
 import org.frice.game.utils.time.FTimeListener;
 
-import java.awt.*;
-
 /**
  * An awesome demo
  *
