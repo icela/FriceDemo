@@ -15,8 +15,8 @@ import java.awt.*;
 public class Demo11 extends Game {
 
 	private ColorResource colors[];
-	private double a = 0;
-	private double b = 0;
+	private d1 a = 0;
+	private d1 b = 0;
 
 	@Override
 	public void onInit() {
