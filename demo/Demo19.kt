@@ -13,7 +13,7 @@ import java.util.*
 
  * @author ice1000
  */
-class EDemo {
+class Demo19 {
 	fun process() {
 		val scanner = Scanner(System.`in`)
 		var count = 0
@@ -31,4 +31,4 @@ class EDemo {
 	}
 }
 
-fun main(args: Array<String>) = EDemo().process()
+fun main(args: Array<String>) = Demo19().process()

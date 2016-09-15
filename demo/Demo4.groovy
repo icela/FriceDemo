@@ -2,7 +2,7 @@ import org.frice.game.Game
 import org.frice.game.event.OnClickEvent
 import org.frice.game.resource.image.FileImageResource
 import org.frice.game.resource.image.ImageResource
-import org.frice.game.utils.data.Preference
+import org.frice.game.Preference
 import org.frice.game.utils.message.FDialog
 import org.jetbrains.annotations.NotNull
 import org.jetbrains.annotations.Nullable
