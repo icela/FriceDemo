@@ -1,3 +1,5 @@
+package demo;
+
 import org.frice.game.Game;
 import org.frice.game.obj.effects.FunctionEffect;
 import org.frice.game.utils.time.FTimeListener;
@@ -28,6 +30,6 @@ public class Demo24 extends Game {
 	}
 
 	public static void main(String[] args) {
-		new Main();
+		new Demo24();
 	}
 }

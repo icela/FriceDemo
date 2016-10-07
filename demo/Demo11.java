@@ -1,9 +1,13 @@
+package demo;
+
 import org.frice.game.Game;
 import org.frice.game.anim.move.SimpleMove;
 import org.frice.game.obj.sub.ShapeObject;
 import org.frice.game.resource.graphics.ColorResource;
 import org.frice.game.utils.graphics.shape.FCircle;
 import org.frice.game.utils.time.FTimeListener;
+
+import java.awt.*;
 
 /**
  * An awesome demo
@@ -13,8 +17,8 @@ import org.frice.game.utils.time.FTimeListener;
 public class Demo11 extends Game {
 
 	private ColorResource colors[];
-	private d1 a = 0;
-	private d1 b = 0;
+	private double a = 0;
+	private double b = 0;
 
 	@Override
 	public void onInit() {

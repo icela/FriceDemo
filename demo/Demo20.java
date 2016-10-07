@@ -1,3 +1,6 @@
+package demo;
+
+import org.frice.game.Game;
 import org.frice.game.anim.move.AccelerateMove;
 import org.frice.game.obj.sub.ShapeObject;
 import org.frice.game.resource.graphics.ColorResource;
