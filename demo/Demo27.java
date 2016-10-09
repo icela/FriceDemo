@@ -13,6 +13,7 @@ import org.frice.game.utils.graphics.shape.FQuad;
 import org.frice.game.utils.graphics.shape.FRectangle;
 import org.frice.game.utils.message.FDialog;
 import org.frice.game.utils.message.log.FLog;
+import org.frice.game.utils.misc.QuadTree;
 import org.frice.game.utils.time.FTimer;
 
 import java.util.ArrayList;
