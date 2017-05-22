@@ -1,9 +1,10 @@
 import org.frice.game.Game;
 import org.frice.game.anim.move.AccelerateMove;
-import org.frice.game.anim.move.SimpleMove;
+import org.frice.game.anim.move.AccurateMove;
 import org.frice.game.obj.sub.ImageObject;
-import org.frice.game.resource.image.FileImageResource;
+import org.frice.game.resource.image.WebImageResource;
 import org.frice.game.utils.time.FTimer;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Demo for accelerate (AccelerateMove), this is a simple gravity mode.
@@ -24,19 +25,19 @@ public class Demo2 extends Game {
 	}
 
 	@Override
-	protected void onInit() {
+	public void onInit() {
 		setSize(800, 800);
-		object1 = new ImageObject(new FileImageResource("1.png"), 0, 620);
+		object1 = new ImageObject(new WebImageResource("https://avatars3.githubusercontent.com/u/16398479"), 0, 620);
 		object1.getAnims().add(new AccelerateMove(0, 10));
-		object1.getAnims().add(new SimpleMove(0, -600));
-		object1.getAnims().add(new SimpleMove(100, 0));
+		object1.getAnims().add(new AccurateMove(0, -600));
+		object1.getAnims().add(new AccurateMove(100, 0));
 		addObject(object1);
 		addObject(object2 = make());
 		timer = new FTimer(5000);
 	}
 
 	@Override
-	protected void onRefresh() {
+	public void onRefresh() {
 		if (timer.ended()) {
 			removeObject(object1);
 			removeObject(object2);
@@ -45,14 +46,15 @@ public class Demo2 extends Game {
 		}
 	}
 
+	@NotNull
 	private ImageObject make() {
 		return new ImageObject(
-//				new WebImageResource("https://avatars3.githubusercontent.com/u/16398479?v=3&s=40"
-				new FileImageResource("1.png"
-		), 20, 720) {{
+				new WebImageResource("https://avatars3.githubusercontent.com/u/16398479"),
+//				new FileImageResource("1.png"),
+				20, 720) {{
 			getAnims().add(new AccelerateMove(0, 10));
-			getAnims().add(new SimpleMove(0, -700));
-			getAnims().add(new SimpleMove(280, 0));
+			getAnims().add(new AccurateMove(0, -700));
+			getAnims().add(new AccurateMove(280, 0));
 		}};
 	}
 }
