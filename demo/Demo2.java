@@ -19,6 +19,7 @@ public class Demo2 extends Game {
 	private FTimer timer;
 	private ImageObject object1;
 	private ImageObject object2;
+	public static final String URL = "https://avatars3.githubusercontent.com/u/16398479";
 
 	public static void main(String[] args) {
 		new Demo2();
@@ -27,7 +28,7 @@ public class Demo2 extends Game {
 	@Override
 	public void onInit() {
 		setSize(800, 800);
-		object1 = new ImageObject(new WebImageResource("https://avatars3.githubusercontent.com/u/16398479"), 0, 620);
+		object1 = new ImageObject(new WebImageResource(URL), 0, 620);
 		object1.getAnims().add(new AccelerateMove(0, 10));
 		object1.getAnims().add(new AccurateMove(0, -600));
 		object1.getAnims().add(new AccurateMove(100, 0));
@@ -49,7 +50,7 @@ public class Demo2 extends Game {
 	@NotNull
 	private ImageObject make() {
 		return new ImageObject(
-				new WebImageResource("https://avatars3.githubusercontent.com/u/16398479"),
+				new WebImageResource(URL),
 //				new FileImageResource("1.png"),
 				20, 720) {{
 			getAnims().add(new AccelerateMove(0, 10));
