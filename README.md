@@ -1,6 +1,8 @@
 # FriceDemo
+
 demos for frice engine
 
+Sometimes, I change APIs, so old demos might be deprecated. I'll appreciate if you can help me update them. :joy:
 
 - [demo/Demo1.java](demo/Demo1.java)
 - [demo/Demo2.java](demo/Demo2.java)
