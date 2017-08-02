@@ -16,3 +16,5 @@ Sometimes, I change APIs, so old demos might be deprecated. I'll appreciate if y
 - [demo/Demo10.groovy](demo/Demo10.groovy)
 - [demo/Demo11.java](demo/Demo11.java) (an awesome demo by [@SuperSodaSea](https://github.com/SuperSodaSea))
 - [demo/Demo16.kt](demo/Demo16.kt) (Elder breaks bricks)
+
+For demo(s) of FriceEngine-JSONExtensionPack, See FriceEngine-JSONExtensionPack/src/demo.
