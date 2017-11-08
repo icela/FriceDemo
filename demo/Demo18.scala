@@ -1,6 +1,8 @@
-import org.frice.game.Game
-import org.frice.game.obj.effects.FunctionEffect
-import org.frice.game.utils.time.FTimer
+import kotlin.jvm.functions.Function1
+import org.frice.Game
+import org.frice.obj.effects.FunctionEffect
+import org.frice.utils.time.FTimer
+import org.frice.Initializer.launch
 
 /**
 	* Created by ice1000 on 2016/8/28.
@@ -30,15 +32,14 @@ class Demo18 extends Game {
 		}
 	}
 
-	def getFunction(d: Double) = new FunctionEffect(
-		new FFunction {
-			override def call(double: Double) = Math.sin(double / d) * 100 + 200
-		},
-		10, 10, 600, 500)
+	def getFunction(d: Double): Function1[Double, Double] = new FunctionEffect(
+		new Function1[Double, Double] {
+			override def invoke(double: Double): Double = Math.sin(double / d) * 100 + 200
+		}, 10, 10, 600, 500)
 }
 
 object Demo18 {
 	def main(args: Array[String]): Unit = {
-		new Demo18
+		launch(new Demo18)
 	}
 }

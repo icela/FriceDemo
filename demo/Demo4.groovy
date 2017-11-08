@@ -21,11 +21,12 @@ class Demo4 extends Game {
 	FDialog dialog
 	def closed = false
 
-	def image = new FileImageResource("1.png")
+	def image
 
 	@Override
 	void onInit() {
 		dialog = new FDialog(this)
+		image = new FileImageResource("./test.png")
 
 		/*
 		 * Groovy and Kotlin

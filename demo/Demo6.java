@@ -9,6 +9,8 @@ import org.frice.utils.message.FLog;
 import org.frice.utils.shape.FOval;
 import org.frice.utils.time.FTimeListener;
 
+import static org.frice.Initializer.launch;
+
 /**
  * Created by ice1000 on 2016/8/15.
  *
@@ -16,7 +18,7 @@ import org.frice.utils.time.FTimeListener;
  */
 public class Demo6 extends Game {
 	public static void main(String[] args) {
-		new Demo6();
+		launch(Demo6.class);
 	}
 
 	@Override

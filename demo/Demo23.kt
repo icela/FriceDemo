@@ -56,14 +56,14 @@ class Demo23 : Game() {
 
 	override fun onRefresh() {
 		when (direction) {
-			KeyEvent.VK_LEFT -> player.move(-0.0005, 0.0)
-			KeyEvent.VK_RIGHT -> player.move(0.0005, 0.0)
+			KeyEvent.VK_LEFT -> player.move(-0.0001, 0.0)
+			KeyEvent.VK_RIGHT -> player.move(0.0001, 0.0)
 		}
 		if (player.x < 10) player.x = 10.0
 		if (player.x > width - 30) player.x = width - 30.0
 		if (timer.ended()) {
 			addObject(ShapeObject(ColorResource.BLUE, FRectangle(30, 30), width + 100.0, ground.y - 30).apply {
-				anims.add(SimpleMove(-1000, 0))
+				addAnim(SimpleMove(-200, 0))
 				targets += player to SideEffect {
 					stopped = true
 					FDialog(this@Demo23).show("GG!")

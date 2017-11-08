@@ -2,17 +2,18 @@ package demo;
 
 import org.frice.Game;
 import org.frice.obj.effects.FunctionEffect;
-import org.frice.utils.time.FTimeListener;
+import org.frice.utils.time.FTimer;
 
 import static org.frice.Initializer.launch;
 
 
 public class Demo24 extends Game {
 	private int count = 0;
+	private FTimer timer = new FTimer(10);
 
 	@Override
-	public void onInit() {
-		addTimeListener(new FTimeListener(10, () -> {
+	public void onRefresh() {
+		if (timer.ended()) {
 			count++;
 			clearObjects();
 			addObject(
@@ -29,7 +30,7 @@ public class Demo24 extends Game {
 									Math.sin((x + count + count) / 40) * 20 +
 									200
 					), 0, 100, getWidth(), getHeight()));
-		}));
+		}
 	}
 
 	public static void main(String[] args) {

@@ -7,6 +7,9 @@ import org.frice.utils.time.FTimer;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Queue;
 import java.util.concurrent.LinkedBlockingQueue;
 
@@ -42,7 +45,12 @@ public class Demo15 extends Game {
 
 			@Override
 			public void keyPressed(KeyEvent e) {
-				direction = e.getKeyCode();
+				if (Arrays.asList(
+						KeyEvent.VK_LEFT,
+						KeyEvent.VK_RIGHT,
+						KeyEvent.VK_UP,
+						KeyEvent.VK_DOWN
+				).contains(e.getKeyCode())) direction = e.getKeyCode();
 			}
 
 			@Override
@@ -63,7 +71,7 @@ public class Demo15 extends Game {
 	public void onRefresh() {
 		super.onRefresh();
 		if (timer.ended()) {
-			ShapeObject object = null;
+			ShapeObject object;
 			switch (direction) {
 				case KeyEvent.VK_LEFT:
 					object = generateBody(--x, y);
@@ -78,6 +86,7 @@ public class Demo15 extends Game {
 					object = generateBody(x, ++y);
 					break;
 				default:
+					return;
 			}
 			// x += 60;
 			// x %= 60;

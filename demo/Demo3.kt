@@ -31,7 +31,7 @@ class Demo3 : Game() {
 
 	override fun onRefresh() {
 		if (dickTimer.ended()) {
-			val texture = FileImageResource("tres" + File.separator + "display.png")
+			val texture = FileImageResource("test.png")
 			val obj: ImageObject
 			if (fuck > 300) mode = 1 else if (fuck < 1) mode = 0
 			when (mode) {

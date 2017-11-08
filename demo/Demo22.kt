@@ -1,5 +1,3 @@
-package org.frice.game
-
 import org.frice.Game
 import org.frice.launch
 import org.frice.obj.sub.ShapeObject

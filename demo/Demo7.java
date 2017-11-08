@@ -31,6 +31,7 @@ public class Demo7 extends Game {
 		addObject(object);
 		gameOver = () -> {
 			new Thread(() -> FileUtils.image2File((JvmImage) getScreenCut().getImage(), "截屏.png")).start();
+			setPaused(true);
 			new FDialog(this).show("Game Over");
 			System.exit(0);
 		};

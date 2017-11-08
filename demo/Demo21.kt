@@ -1,5 +1,3 @@
-package demo
-
 import org.frice.Game
 import org.frice.anim.RotateAnim
 import org.frice.anim.move.AccelerateMove
@@ -19,7 +17,6 @@ import org.frice.utils.data.XMLPreference
 import org.frice.utils.graphics.greyify
 import org.frice.utils.message.FLog
 import org.frice.utils.shape.*
-import org.frice.utils.time.FTimeListener
 import org.frice.utils.time.FTimer
 import java.util.*
 import java.util.function.Consumer
@@ -40,17 +37,15 @@ class Demo21 : Game() {
 		super.onInit()
 		autoGC = true
 
-		addTimeListener(FTimeListener(400, timeUp = SideEffect { FLog.v("400 ms has passed") }))
-
 		addObject(ParticleEffect(ParticleResource(this, width / 10, height / 10, 0.01), width * 0.1, height * 0.1))
 		addObject(SimpleButton(text = "I am a button", x = 30.0, y = 30.0, width = 100.0, height = 30.0).apply {
 			onClickListener = Consumer {
 				val obj = ShapeObject(ColorResource.西木野真姬, FOval(40.0, 30.0), 100.0, 100.0).apply {
 					mass = 3.0
 					addForce(-1.0, -1.0)
-					anims.add(SimpleMove(400, 400))
-					anims.add(SimpleScale(1.1, 1.0))
-					anims.add(RotateAnim(0.1))
+					addAnim(SimpleMove(400, 400))
+					addAnim(SimpleScale(1.1, 1.0))
+					addAnim(RotateAnim(0.1))
 				}
 				objs.add(obj)
 				addObject(obj)

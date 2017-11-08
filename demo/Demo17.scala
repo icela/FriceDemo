@@ -1,9 +1,10 @@
-import org.frice.game.Game
-import org.frice.game.anim.move.SimpleMove
-import org.frice.game.obj.sub.ShapeObject
-import org.frice.game.resource.graphics.ColorResource
-import org.frice.game.utils.graphics.shape.FCircle
-import org.frice.game.utils.time.FTimer
+import org.frice.Game
+import org.frice.anim.move.SimpleMove
+import org.frice.obj.sub.ShapeObject
+import org.frice.resource.graphics.ColorResource
+import org.frice.utils.shape.FCircle
+import org.frice.utils.time.FTimer
+import org.frice.Initializer.launch
 
 /**
 	* Created by ice1000 on 2016/8/28.
@@ -34,6 +35,6 @@ class Demo17 extends Game {
 
 object Demo17 {
 	def main(args: Array[String]): Unit = {
-		new Demo17
+		launch(new Demo17)
 	}
 }
