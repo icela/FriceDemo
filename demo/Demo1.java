@@ -1,17 +1,20 @@
-import org.frice.game.Game;
-import org.frice.game.anim.move.SimpleMove;
-import org.frice.game.event.OnClickEvent;
-import org.frice.game.obj.FObject;
-import org.frice.game.obj.sub.ImageObject;
-import org.frice.game.obj.sub.ShapeObject;
-import org.frice.game.resource.graphics.ColorResource;
-import org.frice.game.resource.image.FileImageResource;
-import org.frice.game.utils.graphics.shape.FOval;
-import org.frice.game.utils.message.FDialog;
-import org.frice.game.utils.time.FTimeListener;
-import org.frice.game.utils.time.FTimer;
+import org.frice.Game;
+import org.frice.anim.move.SimpleMove;
+import org.frice.event.OnClickEvent;
+import org.frice.obj.FObject;
+import org.frice.obj.sub.ImageObject;
+import org.frice.obj.sub.ShapeObject;
+import org.frice.resource.graphics.ColorResource;
+import org.frice.resource.image.FileImageResource;
+import org.frice.utils.message.FDialog;
+import org.frice.utils.shape.FOval;
+import org.frice.utils.time.FTimeListener;
+import org.frice.utils.time.FTimer;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+
+import static org.frice.Initializer.launch;
 
 /**
  * Demo for the simplest use of Frice Engine
@@ -31,7 +34,7 @@ public class Demo1 extends Game {
 	@Override
 	public void onInit() {
 		timer = new FTimer(800);
-		setBack(ColorResource.PINK);
+		setBackground(ColorResource.PINK.getColor());
 		setBounds(100, 100, 800, 800);
 		setTitle("Fuck Fuck Fuck");
 		addObject(new ShapeObject(ColorResource.DARK_GRAY, new FOval(50, 50)) {{
@@ -65,7 +68,7 @@ public class Demo1 extends Game {
 	}
 
 	@Override
-	public void onClick(OnClickEvent onClickEvent) {
+	public void onClick(@NotNull OnClickEvent onClickEvent) {
 //		dialog.show("fuck!!!!!!");
 		switch (dialog.confirm("Choose")) {
 			case 0:
@@ -84,6 +87,6 @@ public class Demo1 extends Game {
 	}
 
 	public static void main(String[] args) {
-		new Demo1();
+		launch(Demo1.class);
 	}
 }

@@ -1,29 +1,28 @@
 package demo
 
-import org.frice.game.Game
-import org.frice.game.anim.RotateAnim
-import org.frice.game.anim.move.AccelerateMove
-import org.frice.game.anim.move.SimpleMove
-import org.frice.game.anim.scale.SimpleScale
-import org.frice.game.event.OnClickEvent
-import org.frice.game.obj.FObject
-import org.frice.game.obj.PhysicalObject
-import org.frice.game.obj.button.FButton
-import org.frice.game.obj.button.SimpleButton
-import org.frice.game.obj.effects.ParticleEffect
-import org.frice.game.obj.sub.ShapeObject
-import org.frice.game.resource.graphics.ColorResource
-import org.frice.game.resource.graphics.ParticleResource
-import org.frice.game.utils.data.Preference
-import org.frice.game.utils.data.XMLPreference
-import org.frice.game.utils.graphics.shape.FCircle
-import org.frice.game.utils.graphics.shape.FOval
-import org.frice.game.utils.graphics.shape.FPoint
-import org.frice.game.utils.graphics.utils.ColorUtils.gray
-import org.frice.game.utils.message.log.FLog
-import org.frice.game.utils.time.FTimeListener
-import org.frice.game.utils.time.FTimer
+import org.frice.Game
+import org.frice.anim.RotateAnim
+import org.frice.anim.move.AccelerateMove
+import org.frice.anim.move.SimpleMove
+import org.frice.anim.scale.SimpleScale
+import org.frice.event.OnClickEvent
+import org.frice.launch
+import org.frice.obj.PhysicalObject
+import org.frice.obj.SideEffect
+import org.frice.obj.button.SimpleButton
+import org.frice.obj.effects.ParticleEffect
+import org.frice.obj.sub.ShapeObject
+import org.frice.resource.graphics.ColorResource
+import org.frice.resource.graphics.ParticleResource
+import org.frice.utils.data.Preference
+import org.frice.utils.data.XMLPreference
+import org.frice.utils.graphics.greyify
+import org.frice.utils.message.FLog
+import org.frice.utils.shape.*
+import org.frice.utils.time.FTimeListener
+import org.frice.utils.time.FTimer
 import java.util.*
+import java.util.function.Consumer
 
 /**
  * Sample
@@ -31,7 +30,7 @@ import java.util.*
  *
  * @author ice1000
  */
-class Demo21() : Game() {
+class Demo21 : Game() {
 	private lateinit var preference: Preference
 	private lateinit var xmlPreference: XMLPreference
 	private val timer = FTimer(200)
@@ -41,22 +40,20 @@ class Demo21() : Game() {
 		super.onInit()
 		autoGC = true
 
-		addTimeListener(FTimeListener(400, { FLog.v("400 ms has passed") }))
+		addTimeListener(FTimeListener(400, timeUp = SideEffect { FLog.v("400 ms has passed") }))
 
 		addObject(ParticleEffect(ParticleResource(this, width / 10, height / 10, 0.01), width * 0.1, height * 0.1))
-		addObject(SimpleButton("I am a button", 30.0, 30.0, 100.0, 30.0).apply {
-			onClickListener = object : FButton.OnClickListener {
-				override fun onClick(e: OnClickEvent) {
-					val obj = ShapeObject(ColorResource.西木野真姬, FOval(40.0, 30.0), 100.0, 100.0).apply {
-						mass = 3.0
-						addForce(-1.0, -1.0)
-						anims.add(SimpleMove(400, 400))
-						anims.add(SimpleScale(1.1, 1.0))
-						anims.add(RotateAnim(0.1))
-					}
-					objs.add(obj)
-					addObject(obj)
+		addObject(SimpleButton(text = "I am a button", x = 30.0, y = 30.0, width = 100.0, height = 30.0).apply {
+			onClickListener = Consumer {
+				val obj = ShapeObject(ColorResource.西木野真姬, FOval(40.0, 30.0), 100.0, 100.0).apply {
+					mass = 3.0
+					addForce(-1.0, -1.0)
+					anims.add(SimpleMove(400, 400))
+					anims.add(SimpleScale(1.1, 1.0))
+					anims.add(RotateAnim(0.1))
 				}
+				objs.add(obj)
+				addObject(obj)
 			}
 		})
 		//		AudioManager.getPlayer("1.wav").start()
@@ -81,7 +78,7 @@ class Demo21() : Game() {
 		//		addObject(ImageObject(WebImageResource("https://avatars1.githubusercontent.com/u/21008243?v=3&s=200"),
 		//				10.0, 10.0))
 
-		FLog.v(ColorResource.小泉花阳.color.rgb.gray())
+		FLog.v(ColorResource.小泉花阳.color.rgb.greyify())
 	}
 
 	override fun onRefresh() {
@@ -94,15 +91,13 @@ class Demo21() : Game() {
 				anims.add(SimpleMove(random.nextInt(400) - 200, 0))
 				targets.clear()
 				objs.forEach { o ->
-					targets.add(Pair(o, object : FObject.OnCollideEvent {
-						override fun handle() {
-							anims.clear()
-							targets.clear()
-							anims.add(SimpleMove(0, -300))
-							anims.add(SimpleScale(1.1, 1.1))
-							res = ColorResource.MAGENTA
-						}
-					}))
+					targets += o to SideEffect {
+						anims.clear()
+						targets.clear()
+						addAnim(SimpleMove(0, -300))
+						addAnim(SimpleScale(1.1, 1.1))
+						res = ColorResource.MAGENTA
+					}
 				}
 			})
 		}
@@ -118,5 +113,5 @@ class Demo21() : Game() {
 }
 
 fun main(args: Array<String>) {
-	Demo21()
+	launch(Demo21::class.java)
 }

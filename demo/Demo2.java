@@ -1,10 +1,13 @@
-import org.frice.game.Game;
-import org.frice.game.anim.move.AccelerateMove;
-import org.frice.game.anim.move.AccurateMove;
-import org.frice.game.obj.sub.ImageObject;
-import org.frice.game.resource.image.WebImageResource;
-import org.frice.game.utils.time.FTimer;
+import org.frice.Game;
+import org.frice.Initializer;
+import org.frice.anim.move.AccelerateMove;
+import org.frice.anim.move.AccurateMove;
+import org.frice.obj.sub.ImageObject;
+import org.frice.resource.image.WebImageResource;
+import org.frice.utils.time.FTimer;
 import org.jetbrains.annotations.NotNull;
+
+import static org.frice.Initializer.launch;
 
 /**
  * Demo for accelerate (AccelerateMove), this is a simple gravity mode.
@@ -22,28 +25,25 @@ public class Demo2 extends Game {
 	public static final String URL = "https://avatars3.githubusercontent.com/u/16398479";
 
 	public static void main(String[] args) {
-		new Demo2();
+		launch(Demo2.class);
 	}
 
 	@Override
 	public void onInit() {
 		setSize(800, 800);
 		object1 = new ImageObject(new WebImageResource(URL), 0, 620);
-		object1.getAnims().add(new AccelerateMove(0, 10));
-		object1.getAnims().add(new AccurateMove(0, -600));
-		object1.getAnims().add(new AccurateMove(100, 0));
-		addObject(object1);
-		addObject(object2 = make());
+		object1.addAnim(new AccelerateMove(0, 10));
+		object1.addAnim(new AccurateMove(0, -600));
+		object1.addAnim(new AccurateMove(100, 0));
+		addObject(object1, object2 = make());
 		timer = new FTimer(5000);
 	}
 
 	@Override
 	public void onRefresh() {
 		if (timer.ended()) {
-			removeObject(object1);
-			removeObject(object2);
-			addObject(object1 = make());
-			addObject(object2 = make());
+			removeObject(object1, object2);
+			addObject(object1 = make(), object2 = make());
 		}
 	}
 
@@ -53,9 +53,9 @@ public class Demo2 extends Game {
 				new WebImageResource(URL),
 //				new FileImageResource("1.png"),
 				20, 720) {{
-			getAnims().add(new AccelerateMove(0, 10));
-			getAnims().add(new AccurateMove(0, -700));
-			getAnims().add(new AccurateMove(280, 0));
+			addAnim(new AccelerateMove(0, 10));
+			addAnim(new AccurateMove(0, -700));
+			addAnim(new AccurateMove(280, 0));
 		}};
 	}
 }

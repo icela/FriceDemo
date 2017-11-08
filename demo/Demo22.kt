@@ -1,10 +1,12 @@
 package org.frice.game
 
-import org.frice.game.obj.sub.ShapeObject
-import org.frice.game.resource.graphics.ColorResource
-import org.frice.game.utils.graphics.shape.FCircle
-import org.frice.game.utils.graphics.shape.FRectangle
-import org.frice.game.utils.time.FTimer
+import org.frice.Game
+import org.frice.launch
+import org.frice.obj.sub.ShapeObject
+import org.frice.resource.graphics.ColorResource
+import org.frice.utils.shape.FCircle
+import org.frice.utils.shape.FRectangle
+import org.frice.utils.time.FTimer
 import java.awt.event.KeyEvent
 import java.awt.event.KeyListener
 import java.util.*
@@ -46,12 +48,11 @@ class Demo22 : Game() {
 	override fun onRefresh() {
 		super.onRefresh()
 		if (timer.ended()) {
-			val obj: ShapeObject
-			when (direction) {
-				KeyEvent.VK_LEFT -> obj = generateBody(--xx, yy)
-				KeyEvent.VK_RIGHT -> obj = generateBody(++xx, yy)
-				KeyEvent.VK_UP -> obj = generateBody(xx, --yy)
-				else -> obj = generateBody(xx, ++yy)
+			val obj: ShapeObject = when (direction) {
+				KeyEvent.VK_LEFT -> generateBody(--xx, yy)
+				KeyEvent.VK_RIGHT -> generateBody(++xx, yy)
+				KeyEvent.VK_UP -> generateBody(xx, --yy)
+				else -> generateBody(xx, ++yy)
 			}
 			xx = moved(xx, true)
 			yy = moved(yy, false)
@@ -75,6 +76,6 @@ class Demo22 : Game() {
 	private fun moved(i: Int, isX: Boolean) = if (isX) (i + this.width / 10 - 2) % (this.width / 10 - 2) else (i + (this.height / 10 - 4)) % (this.height / 10 - 4)
 
 	companion object {
-		@JvmStatic fun main(args: Array<String>) = Demo22()
+		@JvmStatic fun main(args: Array<String>) = launch(Demo22::class.java)
 	}
 }

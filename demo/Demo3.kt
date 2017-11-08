@@ -1,8 +1,9 @@
-import org.frice.game.Game
-import org.frice.game.obj.sub.ImageObject
-import org.frice.game.resource.image.FileImageResource
-import org.frice.game.utils.message.log.FLog
-import org.frice.game.utils.time.FTimer
+import org.frice.Game
+import org.frice.launch
+import org.frice.obj.sub.ImageObject
+import org.frice.resource.image.FileImageResource
+import org.frice.utils.message.FLog
+import org.frice.utils.time.FTimer
 import java.awt.Rectangle
 import java.io.File
 import java.util.*
@@ -15,12 +16,12 @@ import java.util.*
  * @since v0.1
  */
 class Demo3 : Game() {
-	val dickTimer = FTimer(1000)
+	private val dickTimer = FTimer(1000)
 
-	var fuck = 0.0
+	private var fuck = 0.0
 
-	val objList = ArrayList<ImageObject>()
-	var mode = 0
+	private val objList = arrayListOf<ImageObject>()
+	private var mode = 0
 	override fun onInit() {
 		bounds = Rectangle(100, 100, 640, 480)
 		title = "Demo3 of Frice"
@@ -52,8 +53,9 @@ class Demo3 : Game() {
 	}
 
 	companion object {
-		@JvmStatic fun main(args: Array<String>) {
-			Demo3()
+		@JvmStatic
+		fun main(args: Array<String>) {
+			launch(Demo3::class.java)
 		}
 	}
 }

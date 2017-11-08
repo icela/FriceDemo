@@ -1,18 +1,19 @@
-
-import org.frice.game.Game
-import org.frice.game.anim.move.AccelerateMove
-import org.frice.game.anim.move.SimpleMove
-import org.frice.game.event.OnClickEvent
-import org.frice.game.obj.FObject
-import org.frice.game.obj.sub.ImageObject
-import org.frice.game.obj.sub.ShapeObject
-import org.frice.game.resource.graphics.ColorResource
-import org.frice.game.resource.image.ImageResource
-import org.frice.game.resource.image.WebImageResource
-import org.frice.game.utils.graphics.shape.FRectangle
-import org.frice.game.utils.message.FDialog
-import org.frice.game.utils.message.log.FLog
-import org.frice.game.utils.misc.unless
+import org.frice.Game
+import org.frice.anim.move.AccelerateMove
+import org.frice.anim.move.SimpleMove
+import org.frice.event.OnClickEvent
+import org.frice.launch
+import org.frice.obj.FObject
+import org.frice.obj.SideEffect
+import org.frice.obj.sub.ImageObject
+import org.frice.obj.sub.ShapeObject
+import org.frice.resource.graphics.ColorResource
+import org.frice.resource.image.ImageResource
+import org.frice.resource.image.WebImageResource
+import org.frice.utils.shape.FRectangle
+import org.frice.utils.message.FDialog
+import org.frice.utils.message.FLog
+import org.frice.utils.misc.unless
 import java.awt.MouseInfo
 
 /**
@@ -30,7 +31,7 @@ class Demo16 : Game() {
 	private var r = 5.0
 	private var sum = 0
 
-	public override fun onInit() {
+	override fun onInit() {
 		setBounds(100, 100, 800, 600)
 		title = "蛤蛤打砖块"
 		r = 32.0
@@ -43,7 +44,7 @@ class Demo16 : Game() {
 		addBlocks()
 	}
 
-	public override fun onRefresh() {
+	override fun onRefresh() {
 		val point = MouseInfo.getPointerInfo().location
 		val theX = point.x - this.x.toDouble() - 拍.width / 2
 		if (0 < theX && theX < width - 拍.width) {
@@ -85,12 +86,13 @@ class Demo16 : Game() {
 	}
 
 	override fun onClick(e: OnClickEvent) {
-		unless (发球) {
+		unless(发球) {
 			发球 = true
 			xa = ((random.nextGaussian() - 0.5) * 50 + 200).toInt()
 			ya = 0 - ((random.nextGaussian() - 0.5) * 50 + 200).toInt()
 			球.anims.add(SimpleMove(xa, ya))
-		}}
+		}
+	}
 
 
 	private fun check(activeObj: ImageObject, staticObj: ImageObject) {
@@ -114,33 +116,34 @@ class Demo16 : Game() {
 			(1..8).forEach { j ->
 				val t = ImageObject(y, (80 * i).toDouble(), (20 + j * 25).toDouble())
 				addObject(t)
-				球.targets.add(Pair(t, FObject.OnCollideEvent.from {
+				球.targets += t to SideEffect {
 					if (t.anims.isEmpty()) {
-						t.anims.add(AccelerateMove.getGravity())
-						t.targets.add(Pair(底部, FObject.OnCollideEvent.from {
+						t.addAnim(AccelerateMove.getGravity())
+						t.targets += 底部 to SideEffect {
 							t.died = true
 							removeObject(t)
 							sum--
 							FLog.v(sum)
-						}))
-						t.targets.add(Pair(拍, FObject.OnCollideEvent.from {
+						}
+						t.targets += 拍 to SideEffect {
 							removeObject(t)
 							t.died = true
 							sum++
 							FLog.v(sum)
-						}))
+						}
 						球.anims.clear()
 						check(球, t)
-						球.anims.add(SimpleMove(xa, ya))
+						球.addAnim(SimpleMove(xa, ya))
 					}
-				}))
+				}
 			}
 		}
 	}
 
 	companion object {
-		@JvmStatic fun main(args: Array<String>) {
-			Demo16()
+		@JvmStatic
+		fun main(args: Array<String>) {
+			launch(Demo16::class.java)
 		}
 	}
 }
