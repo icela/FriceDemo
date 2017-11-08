@@ -32,7 +32,7 @@ public class Demo6 extends Game {
 	}
 
 	@Override
-	protected void onClick(OnClickEvent e) {
+	public void onClick(OnClickEvent e) {
 		setPaused(!getPaused());
 		FLog.e("paused");
 	}

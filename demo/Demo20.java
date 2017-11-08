@@ -1,10 +1,12 @@
 package demo;
 
-import org.frice.game.Game;
-import org.frice.game.anim.move.AccelerateMove;
-import org.frice.game.obj.sub.ShapeObject;
-import org.frice.game.resource.graphics.ColorResource;
-import org.frice.game.utils.graphics.shape.FCircle;
+import org.frice.Game;
+import org.frice.anim.move.AccelerateMove;
+import org.frice.obj.sub.ShapeObject;
+import org.frice.resource.graphics.ColorResource;
+import org.frice.utils.shape.FCircle;
+
+import static org.frice.Initializer.launch;
 
 /**
  * Created by ice1000 on 2016/8/29.
@@ -13,13 +15,13 @@ import org.frice.game.utils.graphics.shape.FCircle;
  */
 public class Demo20 extends Game {
 	@Override
-	protected void onRefresh() {
+	public void onRefresh() {
 		addObject(new ShapeObject(ColorResource.BLUE, new FCircle(30), getMousePosition().x, getMousePosition().y) {{
-			getAnims().add(AccelerateMove.getGravity());
+			addAnim(AccelerateMove.getGravity());
 		}});
 	}
 
 	public static void main(String[] args) {
-		new Demo20();
+		launch(Demo20.class);
 	}
 }

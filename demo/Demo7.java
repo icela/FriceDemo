@@ -1,14 +1,17 @@
-import kotlin.Unit;
-import kotlin.jvm.functions.Function0;
-import org.frice.game.Game;
-import org.frice.game.anim.move.*;
-import org.frice.game.obj.sub.ShapeObject;
-import org.frice.game.platform.adapter.JvmImage;
-import org.frice.game.resource.graphics.ColorResource;
-import org.frice.game.utils.data.FileUtils;
-import org.frice.game.utils.graphics.shape.*;
-import org.frice.game.utils.message.FDialog;
-import org.frice.game.utils.time.FTimer;
+import org.frice.Game;
+import org.frice.anim.move.AccelerateMove;
+import org.frice.anim.move.SimpleMove;
+import org.frice.obj.SideEffect;
+import org.frice.obj.sub.ShapeObject;
+import org.frice.platform.adapter.JvmImage;
+import org.frice.resource.graphics.ColorResource;
+import org.frice.utils.data.FileUtils;
+import org.frice.utils.message.FDialog;
+import org.frice.utils.shape.FCircle;
+import org.frice.utils.shape.FRectangle;
+import org.frice.utils.time.FTimer;
+
+import static org.frice.Initializer.launch;
 
 public class Demo7 extends Game {
 	public static void main(String[] args) {
@@ -17,7 +20,7 @@ public class Demo7 extends Game {
 
 	private FTimer timer = new FTimer(3000);
 	private ShapeObject object;
-	private Function0<Unit> gameOver;
+	private SideEffect gameOver;
 
 	@Override
 	public void onInit() {
@@ -30,13 +33,11 @@ public class Demo7 extends Game {
 			new Thread(() -> FileUtils.image2File((JvmImage) getScreenCut().getImage(), "截屏.png")).start();
 			new FDialog(this).show("Game Over");
 			System.exit(0);
-			return Unit.INSTANCE;
 		};
 		addKeyListener(null, e -> {
 			object.stopAnims();
 			object.addAnim(AccelerateMove.getGravity());
 			object.addAnim(new SimpleMove(0, -400));
-			return Unit.INSTANCE;
 		}, null);
 	}
 

@@ -5,12 +5,12 @@ require 'java'
 # don't use this path on your computer
 require './FriceEngine.jar'
 
-java_import org.frice.game.Game
-java_import org.frice.game.obj.sub.ShapeObject
-java_import org.frice.game.resource.graphics.ColorResource
-java_import org.frice.game.utils.graphics.shape.FOval
-java_import org.frice.game.utils.time.FTimer
-java_import org.frice.game.utils.message.FDialog
+java_import org.frice.Game
+java_import org.frice.obj.sub.ShapeObject
+java_import org.frice.resource.graphics.ColorResource
+java_import org.frice.utils.graphics.shape.FOval
+java_import org.frice.utils.time.FTimer
+java_import org.frice.utils.message.FDialog
 
 
 module JavaAWT

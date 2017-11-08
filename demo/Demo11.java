@@ -1,13 +1,14 @@
-package demo;
 
-import org.frice.game.Game;
-import org.frice.game.anim.move.SimpleMove;
-import org.frice.game.obj.sub.ShapeObject;
-import org.frice.game.resource.graphics.ColorResource;
-import org.frice.game.utils.graphics.shape.FCircle;
-import org.frice.game.utils.time.FTimeListener;
+import org.frice.Game;
+import org.frice.anim.move.SimpleMove;
+import org.frice.obj.sub.ShapeObject;
+import org.frice.resource.graphics.ColorResource;
+import org.frice.utils.shape.FCircle;
+import org.frice.utils.time.FTimeListener;
 
 import java.awt.*;
+
+import static org.frice.Initializer.launch;
 
 /**
  * An awesome demo
@@ -36,18 +37,18 @@ public class Demo11 extends Game {
 		};
 		setSize(1200, 720);
 		setTitle("IAmSoSquare Demo");
-		setBack(ColorResource.BLACK);
+		setBackground(ColorResource.BLACK.getColor());
 		addTimeListener(new FTimeListener(1, () -> {
 			a += 0.0002;
 			b += a;
 			addObject(new ShapeObject(colors[(int) (System.currentTimeMillis() / 100 % colors.length)],
 					new FCircle(2), getWidth() / 2, getHeight() / 2) {{
-				getAnims().add(new SimpleMove((int) (Math.sin(b) * 256), (int) (Math.cos(b) * 256)));
+				addAnim(new SimpleMove((int) (Math.sin(b) * 256), (int) (Math.cos(b) * 256)));
 			}});
 		}));
 	}
 
 	public static void main(String[] args) {
-		new Demo11();
+		launch(Demo11.class);
 	}
 }

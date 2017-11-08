@@ -1,13 +1,14 @@
-import org.frice.game.Game
-import org.frice.game.event.OnClickEvent
-import org.frice.game.resource.image.FileImageResource
-import org.frice.game.resource.image.ImageResource
-import org.frice.game.utils.data.Preference
-import org.frice.game.utils.message.FDialog
+import org.frice.Game
+import org.frice.event.OnClickEvent
+import org.frice.platform.FriceImage
+import org.frice.resource.image.FileImageResource
+import org.frice.resource.image.ImageResource
+import org.frice.utils.data.Preference
+import org.frice.utils.message.FDialog
 import org.jetbrains.annotations.NotNull
 import org.jetbrains.annotations.Nullable
 
-import java.awt.image.BufferedImage
+import static org.frice.Initializer.launch
 
 /**
  * Groovy sample
@@ -16,35 +17,35 @@ import java.awt.image.BufferedImage
  */
 class Demo4 extends Game {
 
-	def fuck = Preference.getPreference("test.xml")
-	def FDialog dialog
+	def fuck = new Preference("test.xml")
+	FDialog dialog
 	def closed = false
 
 	def image = new FileImageResource("1.png")
 
 	@Override
-	def void onInit() {
+	void onInit() {
 		dialog = new FDialog(this)
 
 		/*
 		 * Groovy and Kotlin
 		 */
-		setCursor(new ImageResource() {
+		cursor = new ImageResource() {
 			@Override
-			BufferedImage getImage() {
-				return Demo4.this.image.image
+			FriceImage getImage() {
+				Demo4.this.image.image
 			}
 
 			@Override
-			void setImage(@NotNull BufferedImage bufferedImage) {
+			void setImage(@NotNull FriceImage bufferedImage) {
 				Demo4.this.image.image = bufferedImage
 			}
-		})
+		}
 
 	}
 
 	@Override
-	def void onRefresh() {
+	void onRefresh() {
 		if (!closed) switch (dialog.confirm("what do U want?")) {
 			case 0:
 				fuck.insert(
@@ -63,11 +64,11 @@ class Demo4 extends Game {
 	}
 
 	@Override
-	def void onClick(@Nullable OnClickEvent e) {
+	void onClick(@Nullable OnClickEvent e) {
 		// Do something
 	}
 
-	def static void main(String[] args) {
-		new Demo4()
+	static void main(String[] args) {
+		launch Demo4.class
 	}
 }

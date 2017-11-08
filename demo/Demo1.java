@@ -38,7 +38,7 @@ public class Demo1 extends Game {
 		setBounds(100, 100, 800, 800);
 		setTitle("Fuck Fuck Fuck");
 		addObject(new ShapeObject(ColorResource.DARK_GRAY, new FOval(50, 50)) {{
-			getAnims().add(new SimpleMove(10, 20));
+			addAnim(new SimpleMove(10, 20));
 		}});
 		addTimeListener(new FTimeListener(200, () -> {
 			if (fuck > 500) mode = 1;
