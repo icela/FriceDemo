@@ -69,11 +69,14 @@ class Demo22 : Game() {
 		}
 	}
 
+	val random = Random(System.currentTimeMillis())
+
 	private fun generateBody(x: Int, y: Int) = ShapeObject(ColorResource.吾王蓝, FRectangle(10, 10), (x * 10).toDouble(), (y * 10).toDouble())
 	private fun generateFood(x: Int, y: Int) = ShapeObject(ColorResource.如果奇迹有颜色那么一定是橙色, FCircle(5.0), (x * 10).toDouble(), (y * 10).toDouble())
 	private fun moved(i: Int, isX: Boolean) = if (isX) (i + this.width / 10 - 2) % (this.width / 10 - 2) else (i + (this.height / 10 - 4)) % (this.height / 10 - 4)
 
 	companion object {
-		@JvmStatic fun main(args: Array<String>) = launch(Demo22::class.java)
+		@JvmStatic
+		fun main(args: Array<String>) = launch(Demo22::class.java)
 	}
 }

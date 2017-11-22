@@ -32,7 +32,7 @@ class Demo18 extends Game {
 		}
 	}
 
-	def getFunction(d: Double): Function1[Double, Double] = new FunctionEffect(
+	def getFunction(d: Double): FunctionEffect = new FunctionEffect(
 		new Function1[Double, Double] {
 			override def invoke(double: Double): Double = Math.sin(double / d) * 100 + 200
 		}, 10, 10, 600, 500)

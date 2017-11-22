@@ -14,6 +14,7 @@ import javax.imageio.ImageIO;
 import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
+import java.util.Random;
 
 import static org.frice.Initializer.launch;
 
@@ -50,24 +51,24 @@ public class Demo9 extends Game {
 		addKeyPressedEvent(KeyEvent.VK_D, e -> plane.setX(plane.getX() + 20));
 		addKeyPressedEvent(KeyEvent.VK_S, e -> plane.setY(plane.getY() + 20));
 		addKeyPressedEvent(KeyEvent.VK_W, e -> plane.setY(plane.getY() - 20));
-		addKeyPressedEvent(KeyEvent.VK_C, e -> {
-			new Thread(() -> {
-				try {
-					ImageIO.write(((JvmImage) getScreenCut().getImage()).getImage(), "png", new File("截屏" + cnt++ + ".png"));
-				} catch (IOException ignored) {
-					System.out.println("车祸现场");
-				}
-			}).start();
-		});
+		addKeyPressedEvent(KeyEvent.VK_C, e -> new Thread(() -> {
+			try {
+				ImageIO.write(((JvmImage) getScreenCut().getImage()).getImage(), "png", new File("截屏" + cnt++ + ".png"));
+			} catch (IOException ignored) {
+				System.out.println("车祸现场");
+			}
+		}).start());
 	}
+
+	Random random = new Random(System.currentTimeMillis());
 
 	@Override
 	public void onRefresh() {
 		if (timer.ended()) {
 			boss.getAnims().clear();
 			boss.addAnim(new SimpleMove(
-					getRandom().nextInt(500) - (int) boss.getX(),
-					getRandom().nextInt(500) - (int) boss.getY()));
+					random.nextInt(500) - (int) boss.getX(),
+					random.nextInt(500) - (int) boss.getY()));
 		}
 	}
 }

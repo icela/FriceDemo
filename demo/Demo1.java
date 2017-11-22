@@ -1,6 +1,6 @@
 import org.frice.Game;
 import org.frice.anim.move.SimpleMove;
-import org.frice.event.OnClickEvent;
+import org.frice.event.OnMouseEvent;
 import org.frice.obj.FObject;
 import org.frice.obj.sub.ImageObject;
 import org.frice.obj.sub.ShapeObject;
@@ -8,7 +8,6 @@ import org.frice.resource.graphics.ColorResource;
 import org.frice.resource.image.FileImageResource;
 import org.frice.utils.message.FDialog;
 import org.frice.utils.shape.FOval;
-import org.frice.utils.time.FTimeListener;
 import org.frice.utils.time.FTimer;
 import org.jetbrains.annotations.NotNull;
 
@@ -27,6 +26,7 @@ public class Demo1 extends Game {
 
 	private ArrayList<FObject> objects = new ArrayList<>();
 	private FTimer timer;
+	private FTimer timer2;
 	private int fuck = 0;
 	private int mode = 0;
 	private FDialog dialog = new FDialog(this);
@@ -34,20 +34,21 @@ public class Demo1 extends Game {
 	@Override
 	public void onInit() {
 		timer = new FTimer(800);
+		timer2 = new FTimer(200);
 		setBackground(ColorResource.PINK.getColor());
 		setBounds(100, 100, 800, 800);
 		setTitle("Fuck Fuck Fuck");
 		addObject(new ShapeObject(ColorResource.DARK_GRAY, new FOval(50, 50)) {{
 			addAnim(new SimpleMove(10, 20));
 		}});
-		addTimeListener(new FTimeListener(200, () -> {
-			if (fuck > 500) mode = 1;
-			if (fuck < 1) mode = 0;
-		}));
 	}
 
 	@Override
 	public void onRefresh() {
+		if (timer2.ended()) {
+			if (fuck > 500) mode = 1;
+			if (fuck < 1) mode = 0;
+		}
 		if (timer.ended()) {
 			FObject object;
 			switch (mode) {
@@ -68,7 +69,7 @@ public class Demo1 extends Game {
 	}
 
 	@Override
-	public void onClick(@NotNull OnClickEvent onClickEvent) {
+	public void onMouse(@NotNull OnMouseEvent onClickEvent) {
 //		dialog.show("fuck!!!!!!");
 		switch (dialog.confirm("Choose")) {
 			case 0:

@@ -1,20 +1,20 @@
 import org.frice.Game
 import org.frice.anim.move.AccelerateMove
 import org.frice.anim.move.SimpleMove
-import org.frice.event.OnClickEvent
+import org.frice.event.OnMouseEvent
 import org.frice.launch
-import org.frice.obj.FObject
 import org.frice.obj.SideEffect
 import org.frice.obj.sub.ImageObject
 import org.frice.obj.sub.ShapeObject
 import org.frice.resource.graphics.ColorResource
 import org.frice.resource.image.ImageResource
 import org.frice.resource.image.WebImageResource
-import org.frice.utils.shape.FRectangle
 import org.frice.utils.message.FDialog
 import org.frice.utils.message.FLog
 import org.frice.utils.misc.unless
+import org.frice.utils.shape.FRectangle
 import java.awt.MouseInfo
+import java.util.*
 
 /**
  * Created by ifdog on 2016/8/22.
@@ -85,7 +85,9 @@ class Demo16 : Game() {
 		}
 	}
 
-	override fun onClick(e: OnClickEvent) {
+	val random = Random(System.currentTimeMillis())
+
+	override fun onMouse(e: OnMouseEvent) {
 		unless(发球) {
 			发球 = true
 			xa = ((random.nextGaussian() - 0.5) * 50 + 200).toInt()

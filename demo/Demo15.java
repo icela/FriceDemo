@@ -7,10 +7,9 @@ import org.frice.utils.time.FTimer;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Queue;
+import java.util.Random;
 import java.util.concurrent.LinkedBlockingQueue;
 
 import static org.frice.Initializer.launch;
@@ -30,6 +29,7 @@ public class Demo15 extends Game {
 	private boolean isIncreasing = true;
 	private Queue<ShapeObject> body;
 	private ShapeObject food;
+	Random random = new Random(System.currentTimeMillis());
 
 	@Override
 	public void onInit() {
@@ -97,8 +97,8 @@ public class Demo15 extends Game {
 			if (x == fx && y == fy) {
 				this.removeObject(food);
 				isIncreasing = true;
-				fx = getRandom().nextInt(this.getWidth() / 10 - 1);
-				fy = getRandom().nextInt(this.getHeight() / 10 - 1);
+				fx = random.nextInt(this.getWidth() / 10 - 1);
+				fy = random.nextInt(this.getHeight() / 10 - 1);
 				food = generateFood(fx, fy);
 				this.addObject(food);
 			}

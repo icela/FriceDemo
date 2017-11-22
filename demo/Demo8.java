@@ -1,11 +1,11 @@
 import org.frice.Game;
-import org.frice.event.OnClickEvent;
+import org.frice.event.OnMouseEvent;
 import org.frice.obj.sub.ImageObject;
 import org.frice.resource.image.FileImageResource;
 import org.frice.resource.image.FrameImageResource;
 import org.frice.utils.audio.AudioManager;
 import org.frice.utils.audio.AudioPlayer;
-import org.jetbrains.annotations.Nullable;
+import org.jetbrains.annotations.NotNull;
 
 import static org.frice.Initializer.launch;
 
@@ -37,7 +37,7 @@ public class Demo8 extends Game {
 	}
 
 	@Override
-	public void onClick(@Nullable OnClickEvent e) {
+	public void onMouse(@NotNull OnMouseEvent e) {
 		cnt++;
 		if (cnt > 10) player.exit();
 	}

@@ -3,7 +3,7 @@ import org.frice.anim.RotateAnim
 import org.frice.anim.move.AccelerateMove
 import org.frice.anim.move.SimpleMove
 import org.frice.anim.scale.SimpleScale
-import org.frice.event.OnClickEvent
+import org.frice.event.OnMouseEvent
 import org.frice.launch
 import org.frice.obj.PhysicalObject
 import org.frice.obj.SideEffect
@@ -39,7 +39,7 @@ class Demo21 : Game() {
 
 		addObject(ParticleEffect(ParticleResource(this, width / 10, height / 10, 0.01), width * 0.1, height * 0.1))
 		addObject(SimpleButton(text = "I am a button", x = 30.0, y = 30.0, width = 100.0, height = 30.0).apply {
-			onClickListener = Consumer {
+			onMouseListener = Consumer {
 				val obj = ShapeObject(ColorResource.西木野真姬, FOval(40.0, 30.0), 100.0, 100.0).apply {
 					mass = 3.0
 					addForce(-1.0, -1.0)
@@ -76,6 +76,8 @@ class Demo21 : Game() {
 		FLog.v(ColorResource.小泉花阳.color.rgb.greyify())
 	}
 
+	val random = Random(System.currentTimeMillis())
+
 	override fun onRefresh() {
 		super.onRefresh()
 		if (timer.ended()) {
@@ -98,8 +100,8 @@ class Demo21 : Game() {
 		}
 	}
 
-	override fun onClick(e: OnClickEvent) {
-		super.onClick(e)
+	override fun onMouse(e: OnMouseEvent) {
+		super.onMouse(e)
 		FLog.v(e.toString())
 		FLog.v(mousePosition)
 	}

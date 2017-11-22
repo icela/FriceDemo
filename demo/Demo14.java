@@ -18,6 +18,7 @@ import javax.imageio.ImageIO;
 import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
+import java.util.Random;
 
 import static org.frice.Initializer.launch;
 
@@ -74,10 +75,11 @@ public class Demo14 extends Game {
 			preference.insert(key, best);
 		}
 	}
+	Random random = new Random(System.currentTimeMillis());
 
 	@NotNull
 	private ShapeObject[] getObj() {
-		int height = getRandom().nextInt(400);
+		int height = random.nextInt(400);
 		return new ShapeObject[]{new ShapeObject(ColorResource.吾王蓝,
 				new FRectangle(50, height), 550.0, 0.0) {{
 			addAnim(new SimpleMove(-150, 0));

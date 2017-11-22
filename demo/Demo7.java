@@ -11,6 +11,8 @@ import org.frice.utils.shape.FCircle;
 import org.frice.utils.shape.FRectangle;
 import org.frice.utils.time.FTimer;
 
+import java.util.Random;
+
 import static org.frice.Initializer.launch;
 
 public class Demo7 extends Game {
@@ -47,9 +49,10 @@ public class Demo7 extends Game {
 		if (object.getY() > getHeight() + 20) gameOver.invoke();
 		if (timer.ended()) addObject(getObj());
 	}
+	Random random = new Random(System.currentTimeMillis());
 
 	private ShapeObject[] getObj() {
-		int height = getRandom().nextInt(400);
+		int height = random.nextInt(400);
 		return new ShapeObject[]{new ShapeObject(ColorResource.教主黄, new FRectangle(50, height), 550, 0) {{
 			addAnim(new SimpleMove(-150, 0));
 			addCollider(object, gameOver);
