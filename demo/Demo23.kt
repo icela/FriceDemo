@@ -6,13 +6,12 @@ import org.frice.obj.FObject
 import org.frice.obj.SideEffect
 import org.frice.obj.sub.ShapeObject
 import org.frice.resource.graphics.ColorResource
+import org.frice.utils.message.FDialog
 import org.frice.utils.shape.FOval
 import org.frice.utils.shape.FRectangle
-import org.frice.utils.message.FDialog
 import org.frice.utils.time.FTimer
 import java.awt.event.KeyEvent
 import java.awt.event.KeyListener
-import java.util.function.Consumer
 
 /**
  * Created by ice1000 on 2016/9/11.
@@ -64,11 +63,11 @@ class Demo23 : Game() {
 		if (timer.ended()) {
 			addObject(ShapeObject(ColorResource.BLUE, FRectangle(30, 30), width + 100.0, ground.y - 30).apply {
 				addAnim(SimpleMove(-200, 0))
-				targets += player to SideEffect {
+				addCollider(player, SideEffect {
 					stopped = true
-					FDialog(this@Demo23).show("GG!")
+					FDialog(this@Demo23).confirm("GG!")
 					System.exit(0)
-				}
+				})
 			})
 		}
 	}

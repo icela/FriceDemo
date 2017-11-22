@@ -8,6 +8,7 @@ import org.frice.utils.shape.FCircle;
 import org.frice.utils.shape.FRectangle;
 import org.frice.utils.time.FTimer;
 
+import java.awt.*;
 import java.util.Random;
 
 import static org.frice.Initializer.launch;
@@ -44,9 +45,10 @@ public class Demo13 extends Game {
 
 	@Override
 	public void onRefresh() {
-		if (timer2.ended()) {
+		Point mouse = getMousePosition();
+		if (timer2.ended() && null != mouse) {
 			addObject(new ShapeObject(colors[(int) ((System.currentTimeMillis() / 100) % colors.length)],
-					new FCircle(10), getMousePosition().getX(), getMousePosition().getY()) {{
+					new FCircle(10), mouse.getX(), mouse.getY()) {{
 				addAnim(new SimpleMove((int) (random.nextInt(Demo13.this.getWidth()) - getX()), -500));
 				addAnim(AccelerateMove.getGravity(20));
 				addCollider(object, () -> {

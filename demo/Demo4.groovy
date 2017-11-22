@@ -1,5 +1,5 @@
 import org.frice.Game
-import org.frice.event.OnClickEvent
+import org.frice.event.OnMouseEvent
 import org.frice.platform.FriceImage
 import org.frice.resource.image.FileImageResource
 import org.frice.resource.image.ImageResource
@@ -65,7 +65,7 @@ class Demo4 extends Game {
 	}
 
 	@Override
-	void onClick(@Nullable OnClickEvent e) {
+	void onMouse(@Nullable OnMouseEvent e) {
 		// Do something
 	}
 

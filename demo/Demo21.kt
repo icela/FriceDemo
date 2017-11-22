@@ -80,7 +80,8 @@ class Demo21 : Game() {
 
 	override fun onRefresh() {
 		super.onRefresh()
-		if (timer.ended()) {
+		val mousePosition = mousePosition
+		if (timer.ended() && null != mousePosition) {
 			objs.removeAll { o -> o.died }
 			addObject(ShapeObject(ColorResource.IntelliJ_IDEA黑, FCircle(10.0),
 					mousePosition.x.toDouble(), mousePosition.y.toDouble()).apply {
@@ -100,11 +101,11 @@ class Demo21 : Game() {
 		}
 	}
 
-	override fun onMouse(e: OnMouseEvent) {
-		super.onMouse(e)
-		FLog.v(e.toString())
-		FLog.v(mousePosition)
-	}
+//	override fun onMouse(e: OnMouseEvent) {
+//		super.onMouse(e)
+//		FLog.v(e.toString())
+//		FLog.v(mousePosition)
+//	}
 
 	override fun onExit() = System.exit(0)
 }
