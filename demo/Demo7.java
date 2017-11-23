@@ -1,12 +1,14 @@
 import org.frice.Game;
-import org.frice.anim.move.*;
+import org.frice.anim.move.AccelerateMove;
+import org.frice.anim.move.SimpleMove;
 import org.frice.obj.SideEffect;
 import org.frice.obj.sub.ShapeObject;
 import org.frice.platform.adapter.JvmImage;
 import org.frice.resource.graphics.ColorResource;
-import org.frice.utils.data.FileUtils;
+import org.frice.utils.FileUtils;
 import org.frice.utils.message.FDialog;
-import org.frice.utils.shape.*;
+import org.frice.utils.shape.FCircle;
+import org.frice.utils.shape.FRectangle;
 import org.frice.utils.time.FTimer;
 
 import static org.frice.Initializer.launch;

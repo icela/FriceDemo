@@ -11,8 +11,8 @@ import org.frice.resource.image.ImageResource
 import org.frice.resource.image.WebImageResource
 import org.frice.utils.message.FDialog
 import org.frice.utils.message.FLog
-import org.frice.utils.misc.unless
 import org.frice.utils.shape.FRectangle
+import org.frice.utils.unless
 import java.awt.MouseInfo
 import java.util.*
 
