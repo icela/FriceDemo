@@ -21,7 +21,7 @@ public class Demo7 extends Game {
 	private FTimer timer = new FTimer(3000);
 	private ShapeObject object;
 	private SideEffect gameOver = () -> {
-		new Thread(() -> FileUtils.image2File((JvmImage) getScreenCut().getImage(), "截屏.png")).start();
+		new Thread(() -> FileUtils.image2File(getScreenCut().getImage(), "截屏.png")).start();
 		new FDialog(this).show("Game Over");
 		System.exit(0);
 	};

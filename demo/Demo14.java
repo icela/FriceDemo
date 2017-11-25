@@ -5,7 +5,6 @@ import org.frice.obj.SideEffect;
 import org.frice.obj.button.FText;
 import org.frice.obj.button.SimpleText;
 import org.frice.obj.sub.ShapeObject;
-import org.frice.platform.adapter.JvmImage;
 import org.frice.resource.graphics.ColorResource;
 import org.frice.utils.data.Preference;
 import org.frice.utils.message.FDialog;
@@ -50,7 +49,7 @@ public class Demo14 extends Game {
 		gameOver = () -> {
 			new Thread(() -> {
 				try {
-					ImageIO.write(((JvmImage) getScreenCut().getImage()).getImage(), "png", new File("车祸现场.png"));
+					ImageIO.write(getScreenCut().getImage(), "png", new File("车祸现场.png"));
 				} catch (IOException ignored) {
 				}
 			}).start();
@@ -75,6 +74,7 @@ public class Demo14 extends Game {
 			preference.insert(key, best);
 		}
 	}
+
 	Random random = new Random(System.currentTimeMillis());
 
 	@NotNull

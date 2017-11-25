@@ -3,7 +3,6 @@ import org.frice.Game;
 import org.frice.anim.move.SimpleMove;
 import org.frice.obj.effects.ParticleEffect;
 import org.frice.obj.sub.ImageObject;
-import org.frice.platform.adapter.JvmImage;
 import org.frice.resource.graphics.ColorResource;
 import org.frice.resource.graphics.ParticleResource;
 import org.frice.resource.image.FileImageResource;
@@ -53,7 +52,7 @@ public class Demo9 extends Game {
 		addKeyPressedEvent(KeyEvent.VK_W, e -> plane.setY(plane.getY() - 20));
 		addKeyPressedEvent(KeyEvent.VK_C, e -> new Thread(() -> {
 			try {
-				ImageIO.write(((JvmImage) getScreenCut().getImage()).getImage(), "png", new File("截屏" + cnt++ + ".png"));
+				ImageIO.write(getScreenCut().getImage(), "png", new File("截屏" + cnt++ + ".png"));
 			} catch (IOException ignored) {
 				System.out.println("车祸现场");
 			}
