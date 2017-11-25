@@ -35,8 +35,7 @@ public class Demo9 extends Game {
 		setBounds(100, 100, 500, 500);
 		addObject(new ParticleEffect(new ParticleResource(this, 500, 500,
 				ColorResource.WHITE, ColorResource.GREEN), 0, 0));
-		addObject(boss);
-		addObject(plane);
+		addObject(boss, plane);
 		addKeyPressedEvent(KeyEvent.VK_SPACE, e -> {
 			ImageObject object = new ImageObject(new FileImageResource("2.png"), plane.getX(), plane.getY());
 			object.addAnim(new SimpleMove(0, -300));
