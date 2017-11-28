@@ -32,3 +32,6 @@ lib/
 out/
 tres/
 .idea/
+.gradle/
+*.propreties
+build/
