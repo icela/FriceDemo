@@ -6,7 +6,6 @@ import org.frice.utils.time.FTimer;
 
 import static org.frice.Initializer.launch;
 
-
 public class Demo24 extends Game {
 	private int count = 0;
 	private FTimer timer = new FTimer(10);

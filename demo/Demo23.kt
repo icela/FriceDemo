@@ -6,7 +6,6 @@ import org.frice.obj.FObject
 import org.frice.obj.SideEffect
 import org.frice.obj.sub.ShapeObject
 import org.frice.resource.graphics.ColorResource
-import org.frice.utils.message.FDialog
 import org.frice.utils.shape.FOval
 import org.frice.utils.shape.FRectangle
 import org.frice.utils.time.FTimer
@@ -65,7 +64,7 @@ class Demo23 : Game() {
 				addAnim(SimpleMove(-200, 0))
 				addCollider(player, SideEffect {
 					stopped = true
-					FDialog(this@Demo23).confirm("GG!")
+					dialogShow("GG!")
 					System.exit(0)
 				})
 			})

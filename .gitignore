@@ -35,3 +35,7 @@ tres/
 .gradle/
 *.propreties
 build/
+fuckGod.properties
+settings.properties
+demo/Demo4.groovy
+demo/Demo10.groovy

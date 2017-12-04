@@ -9,7 +9,6 @@ import org.frice.obj.sub.ShapeObject
 import org.frice.resource.graphics.ColorResource
 import org.frice.resource.image.ImageResource
 import org.frice.resource.image.WebImageResource
-import org.frice.utils.message.FDialog
 import org.frice.utils.message.FLog
 import org.frice.utils.shape.FRectangle
 import org.frice.utils.unless
@@ -52,7 +51,7 @@ class Demo16 : Game() {
 			if (!发球) 球.x = 拍.x + 拍.width / 2 - 球.width / 2
 		}
 		if (球.y + r > height) {
-			FDialog(this).show("Game over")
+			dialogShow("Game over")
 			System.exit(0)
 		}
 		if (球.y + r > 480 && 球.y + r < 拍.y && 球.x + r > 拍.x && 球.x + r < 拍.x + 拍.width) {

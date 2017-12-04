@@ -6,7 +6,6 @@ import org.frice.obj.sub.ImageObject;
 import org.frice.obj.sub.ShapeObject;
 import org.frice.resource.graphics.ColorResource;
 import org.frice.resource.image.FileImageResource;
-import org.frice.utils.message.FDialog;
 import org.frice.utils.shape.FOval;
 import org.frice.utils.time.FTimer;
 import org.jetbrains.annotations.NotNull;
@@ -29,7 +28,6 @@ public class Demo1 extends Game {
 	private FTimer timer2;
 	private int fuck = 0;
 	private int mode = 0;
-	private FDialog dialog = new FDialog(this);
 
 	@Override
 	public void onInit() {
@@ -71,19 +69,10 @@ public class Demo1 extends Game {
 	@Override
 	public void onMouse(@NotNull OnMouseEvent onClickEvent) {
 //		dialog.show("fuck!!!!!!");
-		switch (dialog.confirm("Choose")) {
-			case 0:
-				dialog.show("Yes!");
-				break;
-			case 1:
-				dialog.show("No!");
-				break;
-			case 2:
-				dialog.show("Canceled!");
-				break;
-			default:
-				dialog.show("???WTF???");
-				break;
+		if (dialogConfirmYesNo("Choose")) {
+			dialogShow("Yes!");
+		} else {
+			dialogShow("No!");
 		}
 	}
 

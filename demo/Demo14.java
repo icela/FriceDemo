@@ -7,7 +7,6 @@ import org.frice.obj.button.SimpleText;
 import org.frice.obj.sub.ShapeObject;
 import org.frice.resource.graphics.ColorResource;
 import org.frice.utils.data.Preference;
-import org.frice.utils.message.FDialog;
 import org.frice.utils.shape.FCircle;
 import org.frice.utils.shape.FRectangle;
 import org.frice.utils.time.FTimer;
@@ -53,7 +52,7 @@ public class Demo14 extends Game {
 				} catch (IOException ignored) {
 				}
 			}).start();
-			new FDialog(this).show("Game Over");
+			dialogShow("Game Over");
 			System.exit(0);
 		};
 		addKeyPressedEvent(KeyEvent.VK_SPACE, e -> {

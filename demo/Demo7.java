@@ -3,10 +3,8 @@ import org.frice.anim.move.AccelerateMove;
 import org.frice.anim.move.SimpleMove;
 import org.frice.obj.SideEffect;
 import org.frice.obj.sub.ShapeObject;
-import org.frice.platform.adapter.JvmImage;
 import org.frice.resource.graphics.ColorResource;
 import org.frice.utils.FileUtils;
-import org.frice.utils.message.FDialog;
 import org.frice.utils.shape.FCircle;
 import org.frice.utils.shape.FRectangle;
 import org.frice.utils.time.FTimer;
@@ -22,7 +20,7 @@ public class Demo7 extends Game {
 	private ShapeObject object;
 	private SideEffect gameOver = () -> {
 		new Thread(() -> FileUtils.image2File(getScreenCut().getImage(), "截屏.png")).start();
-		new FDialog(this).show("Game Over");
+		dialogShow("Game Over");
 		System.exit(0);
 	};
 

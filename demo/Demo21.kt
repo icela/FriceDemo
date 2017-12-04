@@ -3,7 +3,6 @@ import org.frice.anim.RotateAnim
 import org.frice.anim.move.AccelerateMove
 import org.frice.anim.move.SimpleMove
 import org.frice.anim.scale.SimpleScale
-import org.frice.event.OnMouseEvent
 import org.frice.launch
 import org.frice.obj.PhysicalObject
 import org.frice.obj.SideEffect
@@ -14,7 +13,7 @@ import org.frice.resource.graphics.ColorResource
 import org.frice.resource.graphics.ParticleResource
 import org.frice.utils.data.Preference
 import org.frice.utils.data.XMLPreference
-import org.frice.utils.graphics.greyify
+import org.frice.utils.greyify
 import org.frice.utils.message.FLog
 import org.frice.utils.shape.*
 import org.frice.utils.time.FTimer
