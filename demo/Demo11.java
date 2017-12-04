@@ -18,7 +18,7 @@ public class Demo11 extends Game {
 	private ColorResource colors[];
 	private double a = 0;
 	private double b = 0;
-	private FTimer timer = new FTimer(10);
+	private FTimer timer = new FTimer(15);
 
 	@Override
 	public void onInit() {
@@ -33,10 +33,10 @@ public class Demo11 extends Game {
 				ColorResource.西木野真姬,
 				ColorResource.高坂穗乃果
 		};
-		setSize(1200, 720);
+		// setSize(1200, 720);
 		setTitle("IAmSoSquare Demo");
 		setAutoGC(true);
-		addObject(new ShapeObject(ColorResource.IntelliJ_IDEA黑, new FRectangle(1200, 720)));
+		addObject(new ShapeObject(ColorResource.IntelliJ_IDEA黑, new FRectangle(getWidth(), getHeight())));
 	}
 
 	@Override
@@ -49,6 +49,7 @@ public class Demo11 extends Game {
 					new FCircle(2), getWidth() / 2, getHeight() / 2) {{
 				addAnim(new SimpleMove((int) (Math.sin(b) * 256), (int) (Math.cos(b) * 256)));
 			}});
+			System.out.println(getLayers()[0].getObjects().size());
 		}
 	}
 

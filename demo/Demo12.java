@@ -6,6 +6,7 @@ import org.frice.resource.graphics.ColorResource;
 import org.frice.utils.shape.FCircle;
 import org.frice.utils.time.FTimer;
 
+import java.awt.*;
 import java.util.Random;
 
 import static org.frice.Initializer.launch;
@@ -34,13 +35,16 @@ public class Demo12 extends Game {
 		};
 		setBackground(ColorResource.IntelliJ_IDEA黑.getColor());
 	}
+
 	Random random = new Random(System.currentTimeMillis());
 
 	@Override
 	public void onRefresh() {
 		if (timer2.ended()) {
+			Point mousePosition = getMousePosition();
+			if (mousePosition == null) return;
 			addObject(new ShapeObject(colors[(int) ((System.currentTimeMillis() / 100) % colors.length)],
-					new FCircle(10), getMousePosition().getX(), getMousePosition().getY()) {{
+					new FCircle(10), mousePosition.getX(), mousePosition.getY()) {{
 				addAnim(AccelerateMove.getGravity(20));
 				addAnim(new SimpleMove((int) (random.nextInt(Demo12.this.getWidth()) - getX()), -10));
 			}});
