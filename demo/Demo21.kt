@@ -8,9 +8,12 @@ import org.frice.obj.PhysicalObject
 import org.frice.obj.SideEffect
 import org.frice.obj.button.SimpleButton
 import org.frice.obj.effects.ParticleEffect
+import org.frice.obj.sub.ImageObject
 import org.frice.obj.sub.ShapeObject
 import org.frice.resource.graphics.ColorResource
 import org.frice.resource.graphics.ParticleResource
+import org.frice.resource.image.WebImageResource
+import org.frice.utils.QuadTree
 import org.frice.utils.data.Preference
 import org.frice.utils.data.XMLPreference
 import org.frice.utils.greyify
@@ -32,17 +35,27 @@ class Demo21 : Game() {
 	private val timer = FTimer(200)
 	private val objs = LinkedList<PhysicalObject>()
 
+	private lateinit var colored: ImageObject
+
 	override fun onInit() {
 		super.onInit()
 		autoGC = true
 
+		colored = ImageObject(WebImageResource("https://avatars1.githubusercontent.com/u/21008243?v=3&s=200"), 300.0, 300.0)
+		colored.collisionBox = object : FShapeQuad {
+			override val height = 50.0
+			override val width = height
+			override val x = 350.0
+			override val y = 350.0
+		}
+
 		addObject(ParticleEffect(ParticleResource(this, width / 10, height / 10, 0.01), width * 0.1, height * 0.1))
-		addObject(SimpleButton(text = "I am a button", x = 30.0, y = 30.0, width = 100.0, height = 30.0).apply {
-			onMouseListener = Consumer {
+		addObject(SimpleButton(text = "I am a button", x = 30.0, y = 30.0, width = 100.0, height = 30.0).also {
+			it.onMouseListener = Consumer {
 				val obj = ShapeObject(ColorResource.西木野真姬, FOval(40.0, 30.0), 100.0, 100.0).apply {
 					mass = 3.0
 					addForce(-1.0, -1.0)
-					addAnim(SimpleMove(400, 400))
+					addAnim(SimpleMove(200, 200))
 					addAnim(SimpleScale(1.1, 1.0))
 					addAnim(RotateAnim(0.1))
 				}
@@ -69,8 +82,7 @@ class Demo21 : Game() {
 		FPoint(1, 2)
 
 		//		addObject(ImageObject(FileImageResource("1.png"), 10.0, 10.0))
-		//		addObject(ImageObject(WebImageResource("https://avatars1.githubusercontent.com/u/21008243?v=3&s=200"),
-		//				10.0, 10.0))
+		addObject(colored)
 
 		FLog.v(ColorResource.小泉花阳.color.rgb.greyify())
 	}
@@ -80,19 +92,19 @@ class Demo21 : Game() {
 	override fun onRefresh() {
 		super.onRefresh()
 		if (timer.ended()) {
-			objs.removeAll { o -> o.died }
+			objs.removeAll(PhysicalObject::died)
 			addObject(ShapeObject(ColorResource.IntelliJ_IDEA黑, FCircle(10.0), mouse.x, mouse.y).apply {
-				anims.add(AccelerateMove.getGravity())
-				anims.add(SimpleMove(random.nextInt(400) - 200, 0))
+				addAnim(AccelerateMove.getGravity())
+				addAnim(SimpleMove(random.nextInt(400) - 200, 0))
 				targets.clear()
-				objs.forEach { o ->
-					targets += o to SideEffect {
+				addCollider(colored, SideEffect { res = ColorResource.MAGENTA })
+				objs.forEach {
+					addCollider(it, SideEffect {
 						anims.clear()
 						targets.clear()
 						addAnim(SimpleMove(0, -300))
 						addAnim(SimpleScale(1.1, 1.1))
-						res = ColorResource.MAGENTA
-					}
+					})
 				}
 			})
 		}
