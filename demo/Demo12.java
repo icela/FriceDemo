@@ -41,10 +41,8 @@ public class Demo12 extends Game {
 	@Override
 	public void onRefresh() {
 		if (timer2.ended()) {
-			Point mousePosition = getMousePosition();
-			if (mousePosition == null) return;
 			addObject(new ShapeObject(colors[(int) ((System.currentTimeMillis() / 100) % colors.length)],
-					new FCircle(10), mousePosition.getX(), mousePosition.getY()) {{
+					new FCircle(10), mouse.getX(), mouse.getY()) {{
 				addAnim(AccelerateMove.getGravity(20));
 				addAnim(new SimpleMove((int) (random.nextInt(Demo12.this.getWidth()) - getX()), -10));
 			}});

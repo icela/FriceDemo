@@ -79,11 +79,9 @@ class Demo21 : Game() {
 
 	override fun onRefresh() {
 		super.onRefresh()
-		val mousePosition = mousePosition
-		if (timer.ended() && null != mousePosition) {
+		if (timer.ended()) {
 			objs.removeAll { o -> o.died }
-			addObject(ShapeObject(ColorResource.IntelliJ_IDEA黑, FCircle(10.0),
-					mousePosition.x.toDouble(), mousePosition.y.toDouble()).apply {
+			addObject(ShapeObject(ColorResource.IntelliJ_IDEA黑, FCircle(10.0), mouse.x, mouse.y).apply {
 				anims.add(AccelerateMove.getGravity())
 				anims.add(SimpleMove(random.nextInt(400) - 200, 0))
 				targets.clear()
