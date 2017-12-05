@@ -14,6 +14,7 @@ import org.frice.utils.time.FTimer;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -52,22 +53,21 @@ public class Demo7QuadTree extends Game {
 		QuadTree quadTree = new QuadTree(0, new FQuad(0, 0, 500, 800));
 		if (bird.getY() > getHeight() + 20) gameOver.invoke();
 		if (timer.ended()) {
+			quadTree.clear();
 			ShapeObject[] newObjects = getObj(random.nextInt(400));
 			instantAddObject(newObjects);
+			Arrays.stream(newObjects).forEachOrdered(quadTree::insert);
 		}
 
-		quadTree.clear();
-		getLayers()[0].getObjects().stream().filter(obj -> obj instanceof PhysicalObject)
-				.map(obj -> (PhysicalObject) obj).forEachOrdered(quadTree::insert);
 		ArrayList<List<PhysicalObject>> returnObjects = new ArrayList<>();
 		quadTree.retrieve(returnObjects, bird);
 		FLog.e(" size " + returnObjects.size());
 
 		returnObjects.stream().filter(objs -> objs.contains(bird)).forEachOrdered(rets -> {
 			rets.remove(bird);
-			rets.forEach(physicalObject -> {
-				((ShapeObject) physicalObject).setRes(ColorResource.基佬紫);
-				if (bird.collides(physicalObject)) gameOver.invoke();
+			rets.forEach(wall -> {
+				((ShapeObject) wall).setRes(ColorResource.基佬紫);
+				if (bird.collides(wall)) gameOver.invoke();
 			});
 		});
 	}
