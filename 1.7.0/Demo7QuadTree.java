@@ -1,7 +1,6 @@
 import org.frice.Game;
 import org.frice.anim.move.AccelerateMove;
 import org.frice.anim.move.SimpleMove;
-import org.frice.obj.AbstractObject;
 import org.frice.obj.PhysicalObject;
 import org.frice.obj.SideEffect;
 import org.frice.obj.sub.ShapeObject;
@@ -15,7 +14,6 @@ import org.frice.utils.time.FTimer;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -55,12 +53,12 @@ public class Demo7QuadTree extends Game {
 		if (bird.getY() > getHeight() + 20) gameOver.invoke();
 		if (timer.ended()) {
 			ShapeObject[] newObjects = getObj(random.nextInt(400));
-			addObject(newObjects);
-			Collections.addAll(objects(), newObjects);
+			instantAddObject(newObjects);
 		}
 
 		quadTree.clear();
-		objects().stream().filter(obj -> obj instanceof PhysicalObject).map(obj -> (PhysicalObject) obj).forEachOrdered(quadTree::insert);
+		getLayers()[0].getObjects().stream().filter(obj -> obj instanceof PhysicalObject)
+				.map(obj -> (PhysicalObject) obj).forEachOrdered(quadTree::insert);
 		ArrayList<List<PhysicalObject>> returnObjects = new ArrayList<>();
 		quadTree.retrieve(returnObjects, bird);
 		FLog.e(" size " + returnObjects.size());
@@ -75,16 +73,11 @@ public class Demo7QuadTree extends Game {
 	}
 
 	@NotNull
-	private List<AbstractObject> objects() {
-		return getLayers()[0].getObjects();
-	}
-
-	@NotNull
 	private ShapeObject[] getObj(int height) {
-		return new ShapeObject[]{new ShapeObject(ColorResource.教主黄, new FRectangle(50, height), 550, 0) {{
+		return new ShapeObject[]{new ShapeObject(ColorResource.高坂穗乃果, new FRectangle(50, height), 550, 0) {{
 			addAnim(new SimpleMove(-150, 0));
 			addCollider(bird, gameOver);
-		}}, new ShapeObject(ColorResource.教主黄, new FRectangle(50, getHeight() - height - 400), 550, height + 400) {{
+		}}, new ShapeObject(ColorResource.高坂穗乃果, new FRectangle(50, getHeight() - height - 400), 550, height + 400) {{
 			addAnim(new SimpleMove(-150, 0));
 			addCollider(bird, gameOver);
 		}}};
