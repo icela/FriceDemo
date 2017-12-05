@@ -52,51 +52,32 @@ public class Demo7QuadTree extends Game {
 	@Override
 	public void onRefresh() {
 		QuadTree quadTree = new QuadTree(0, new FQuad(0, 0, 500, 800));
-
 		if (object.getY() > getHeight() + 20) gameOver.invoke();
-
-		ShapeObject[] newObjects;
-
 		if (timer.ended()) {
-			newObjects = getObj(random.nextInt(400));
+			ShapeObject[] newObjects = getObj(random.nextInt(400));
 			addObject(newObjects);
 			Collections.addAll(objects(), newObjects);
 		}
 
 		quadTree.clear();
-		for (Object abstractObject : objects())
-			if (abstractObject instanceof PhysicalObject) quadTree.insert((PhysicalObject) abstractObject);
-
+		objects().stream().filter(obj -> obj instanceof PhysicalObject).map(obj -> (PhysicalObject) obj).forEachOrdered(quadTree::insert);
 		ArrayList<List<PhysicalObject>> returnObjects = new ArrayList<>();
-
-		returnObjects.clear();
 		quadTree.retrieve(returnObjects, object);
-
 		FLog.e(" size " + returnObjects.size());
 
-		for (List<PhysicalObject> returnObject : returnObjects) {
-			if (returnObject.contains(object)) {
-				returnObject.remove(object);
-				for (PhysicalObject physicalObject : returnObject) {
-					((ShapeObject) physicalObject).setRes(ColorResource.基佬紫);
-					if (rectCollideRect(object, physicalObject)) gameOver.invoke();
-				}
-			}
-		}
+		returnObjects.stream().filter(objs -> objs.contains(object)).forEachOrdered(rets -> {
+			rets.remove(object);
+			rets.forEach(physicalObject -> {
+				((ShapeObject) physicalObject).setRes(ColorResource.基佬紫);
+				if (object.collides(physicalObject)) gameOver.invoke();
+			});
+		});
 	}
 
 	@NotNull
 	private List<AbstractObject> objects() {
 		return getLayers()[0].getObjects();
 	}
-
-	private boolean rectCollideRect(PhysicalObject A, PhysicalObject B) {
-		return A.getX() + A.getWidth() >= B.getX()
-				&& B.getY() <= A.getY() + A.getHeight()
-				&& A.getX() <= B.getX() + B.getWidth()
-				&& A.getY() <= B.getY() + B.getHeight();
-	}
-
 
 	private ShapeObject[] getObj(int height) {
 		return new ShapeObject[]{new ShapeObject(ColorResource.教主黄, new FRectangle(50, height), 550, 0) {{
