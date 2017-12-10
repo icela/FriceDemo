@@ -35,7 +35,7 @@ public class Demo7QuadTree extends Game {
 		setSize(500, 800);
 		setTitle("Flappy bird demo by ice1000");
 		bird = new ShapeObject(ColorResource.宝强绿, new FCircle(20.0), 50.0, 200.0);
-		bird.getAnims().add(AccelerateMove.getGravity());
+		bird.addAnim(AccelerateMove.getGravity());
 		addObject(bird);
 		gameOver = () -> {
 			dialogShow("Game Over");
