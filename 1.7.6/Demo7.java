@@ -38,11 +38,8 @@ public class Demo7 extends Game {
 
 	@Override public void onRefresh() {
 		if (timer.ended()) addObject(getObj((int) (Math.random() * 400)));
-		boolean die = false;
-		if (bird.getY() > getHeight() + 20) die = true;
 		objects.removeIf(ShapeObject::getDied);
-		if (objects.stream().anyMatch(o -> o.collides(bird))) die = true;
-		if (die) {
+		if (bird.getY() > getHeight() + 20 || objects.stream().anyMatch(o -> o.collides(bird))) {
 			new Thread(() -> FileUtils.image2File(getScreenCut().getImage(), "截屏.png")).start();
 			dialogShow("Game Over");
 			System.exit(0);
