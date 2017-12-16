@@ -9,7 +9,8 @@ allprojects {
 
 buildscript {
 	ext.kotlin_version = '1.2.0'
-	ext.frice_version = '1.7.9'
+	ext.frice_version_num = '1.7.10'
+	ext.frice_version = "v$frice_version_num"
 	repositories {
 		mavenCentral()
 	}
@@ -29,14 +30,14 @@ repositories {
 }
 
 sourceSets {
-	main.kotlin.srcDirs += "$frice_version"
-	main.java.srcDirs += "$frice_version"
+	main.kotlin.srcDirs += "$frice_version_num"
+	main.java.srcDirs += "$frice_version_num"
 }
 
 dependencies {
 	compile "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version"
 	compile group: 'org.jetbrains', name: 'annotations', version: '15.0'
-	compile "com.github.icela:FriceEngine:v$frice_version"
+	compile "com.github.icela:FriceEngine:$frice_version"
 
 	testCompile group: 'junit', name: 'junit', version: '4.12'
 	testCompile "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"
