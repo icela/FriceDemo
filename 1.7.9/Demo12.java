@@ -21,6 +21,8 @@ public class Demo12 extends Game {
 	private ColorResource[] colors;
 	private FTimer timer2;
 	private Random random = new Random(System.currentTimeMillis());
+	private double x;
+	private double y;
 
 	@Override
 	public void onInit() {
@@ -33,7 +35,9 @@ public class Demo12 extends Game {
 	@Override
 	public void onRefresh() {
 		if (timer2.ended()) {
-			addObject(new ShapeObject(colors[(int) ((System.currentTimeMillis() / 100) % colors.length)], new FCircle(10), mouse.getX(), mouse.getY()) {{
+			if (mouse.getX() > 0) x = mouse.getX();
+			if (mouse.getY() > 0) y = mouse.getY();
+			addObject(new ShapeObject(colors[(int) ((System.currentTimeMillis() / 100) % colors.length)], new FCircle(10), x, y) {{
 				addAnim(new AccelerateMove(0, 800));
 				addAnim(new SimpleMove((int) (random.nextInt(Demo12.this.getWidth()) - getX()), -10));
 			}});
